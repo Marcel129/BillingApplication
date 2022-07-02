@@ -10,7 +10,7 @@
 #include <vector>
 #include <windows.h>
 
-const std::string FVpath = "C:\\Users\\Marcel\\Desktop\\testy_apka\\";
+const std::string FVpath = "D:\\SzkolkaRoslinOpatow\\Aplikacja\\";
 const std::string FVTemplateDefaultPath = "D:\\SzkolkaRoslinOpatow\\Aplikacja\\External_resources\\";
 const std::string spacer = "%-||-||-";
 const std::string EOFString = "%-||-||--||-||--||-||-";

@@ -31,7 +31,7 @@ void FV::createLatexFV(){
 
 void FV::createPDFFV(){
     std::string tmp;
-    tmp = "pdflatex -output-directory=" + FVpath +" " + FVpath + FVLDefaultFileName_Latex;
+    tmp = "pdflatex -quiet -output-directory=" + FVpath +" " + FVpath + FVLDefaultFileName_Latex;
     system(tmp.c_str());
 
     for(const std::string a: filesToDelete){

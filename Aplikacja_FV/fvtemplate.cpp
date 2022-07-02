@@ -15,7 +15,6 @@ bool FVTemplate::load(const std::string path)
     {
     std::fstream temp;
     std::string tmp_text = "";
-    qDebug()<<(FVTemplateDefaultPath + FVLTemplateDefaultFileName).c_str();
 
     temp.open(FVTemplateDefaultPath + FVLTemplateDefaultFileName, std::ios::in);
     if (!temp)
@@ -49,3 +48,4 @@ bool FVTemplate::load(const std::string path)
 
     return is_loaded;
     };
+

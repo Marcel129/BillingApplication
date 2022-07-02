@@ -7,20 +7,29 @@ Page {
 
     title: qsTr("Home")
     anchors.centerIn: parent
-    Label {
-        text: qsTr("You are on the home page.")
-        transformOrigin: Item.Center
-        anchors.centerIn: parent
-    }
 
     Button {
         width: 150
         height: 40
         id: button
-        x: parent.width / 2 - width / 2
-        y: parent.height * 0.6
+        x: 421
+        y: 312
         text: qsTr("Generate PDF")
 
-        onPressed: f.createFV();
+        //onPressed: f.createFV()
+    }
+
+    ComboBox {
+        id: comboBox
+        x: 163
+        y: 187
+        width: 275
+        height: 48
     }
 }
+
+/*##^##
+Designer {
+    D{i:0;formeditorZoom:1.25}
+}
+##^##*/
