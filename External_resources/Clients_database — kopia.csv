@@ -1,0 +1,14 @@
+#Clients;;;;
+#Odbiorca;adres;miasto;kod_pocztowy;nip
+Gmina Opat¢w;Plac Obro‰c¢w Pokoju 34;Opat¢w;27-500;8631538233
+J&A Investments Sp. Z o.o.;Ruda Koòcielna 57;èmiel¢w;27-440;5213840962
+Opatowski Oòrodek Kultury;Partyzant¢w 13b;Opat¢w;27-500;8631021286
+Powiat Opatowski;Sienkiewicza 17;Opat¢w;27-500;8631684710
+!EndOfClients;;;;
+#Recipers;;;;
+#Odbiorca;nabywca;adres;miasto;kod_pocztowy
+Gmina Opat¢w;Urz•d Miasta i Gminy w Opatowie;Plac Obro‰c¢w Pokoju 34;Opat¢w;27-500
+Powiat Opatowski;Dom pomocy Spoàecznej w Zochcinku;Zochcinek 42;Opat¢w;27-500
+Powiat Opatowski;Starostwo Powiatowe w Opatowie;Sienkiewicza 17;Opat¢w;27-500
+Powiat Opatowski;DPSZ/WTZ nr 2 w Opatowie;Szpitalna 4;Opat¢w;27-500
+!EndOfData;;;;
