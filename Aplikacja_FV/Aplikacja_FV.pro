@@ -5,10 +5,13 @@ QT += quick
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        client_data.cpp \
+        config.cpp \
         fv.cpp \
         fvdata.cpp \
         fvtemplate.cpp \
-        main.cpp
+        main.cpp \
+        plants_data.cpp
 
 RESOURCES += qml.qrc
 
@@ -24,6 +27,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    client_data.h \
+    config.h \
     fv.h \
     fvdata.h \
-    fvtemplate.h
+    fvtemplate.h \
+    plants_data.h

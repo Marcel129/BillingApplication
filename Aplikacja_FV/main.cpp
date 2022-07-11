@@ -1,7 +1,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include <fv.h>
+#include "fv.h"
+#include "plants_data.h"
+#include "client_data.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,6 +11,13 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
     QGuiApplication app(argc, argv);
+
+     Plants p;
+     Recipers_r c;
+     c.load();
+          p.load();
+ p.saveInFile();
+           c.saveInFile();
 
     FV f;
 
