@@ -9,6 +9,7 @@
 #include <windows.h>
 #include "FVData.hh"
 #include "FVtemplate.hh"
+#include "config.hh"
 
 class FV
 {

@@ -7,9 +7,9 @@
 #include <string>
 #include <vector>
 #include <windows.h>
+#include "config.hh"
 
-const std::string FVpath = "D:\\SzkolkaRoslinOpatow\\Aplikacja\\";
-const std::string FVTemplateDefaultPath = "D:\\SzkolkaRoslinOpatow\\Aplikacja\\External_resources\\";
+
 const std::string spacer = "%-||-||-";
 const std::string EOFString = "%-||-||--||-||--||-||-";
 const std::string FVLDefaultFileName = "FakturaVAT";
@@ -91,7 +91,7 @@ bool FVTemplate::load(const std::string path)
     std::fstream temp;
     std::string tmp_text = "";
 
-    temp.open(FVTemplateDefaultPath + FVLTemplateDefaultFileName, std::ios::in);
+    temp.open(resourcesPath + FVLTemplateDefaultFileName, std::ios::in);
     if (!temp)
     {
         std::cout << "Unable to open template file";

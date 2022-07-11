@@ -4,7 +4,6 @@ import QtQuick.Controls 2.5
 Page {
     width: 600
     height: 400
-    anchors.centerIn: parent
     title: qsTr("Page 2")
 
     Label {

@@ -1,0 +1,342 @@
+import QtQuick 2.12
+import QtQuick.Controls 2.5
+import Qt.labs.qmlmodels
+import QtQuick.Layouts 2.5
+
+Page {
+    id: homePage
+    title: qsTr("Home")
+
+    ColumnLayout {
+        id: columnLayout3
+        anchors.centerIn: parent
+        width: parent.width
+        height: parent.height
+
+        RowLayout {
+            id: rowLayout_generalInvoiceData
+            width: parent.width
+            height: parent.height * 0.4
+            spacing: 15
+
+            ColumnLayout {
+                id: columnLayout_bussines
+                width: parent.width * 0.4
+                height: 266
+                spacing: 5
+
+                ColumnLayout {
+                    id: columnLayout_seller
+                    width: 100
+                    height: 100
+                    layoutDirection: Qt.LeftToRight
+
+                    Label {
+                        id: label_seller
+                        width: 72
+                        height: 16
+                        text: qsTr("Sprzedawca:")
+                    }
+
+                    ComboBox {
+                        id: comboBox_seller
+                        width: parent.width
+                        height: 10
+                        //        x: parent.width * 0.1
+                        //        y: parent.height * 0.1
+                        //        width: 300
+                        //        height: 20
+                    }
+                }
+
+                ColumnLayout {
+                    id: columnLayout_buyer
+                    width: 100
+                    height: 100
+
+                    Label {
+                        id: label_buyer
+                        width: 72
+                        height: 16
+                        text: qsTr("Nabywca:")
+                    }
+
+                    ComboBox {
+                        id: comboBox_buyer
+                        width: parent.width
+                        height: 21
+                    }
+                }
+
+                ColumnLayout {
+                    id: columnLayout_reciper
+                    width: 100
+                    height: 100
+
+                    Label {
+                        id: label_reciper
+                        width: 72
+                        height: 16
+                        text: qsTr("Odbiorca:")
+                    }
+
+                    ComboBox {
+                        id: comboBox_reciper
+                        width: parent.width
+                        height: 21
+                    }
+                }
+
+                ColumnLayout {
+                    id: columnLayout_paymentMethod
+                    width: 100
+                    height: 100
+
+                    Label {
+                        id: label_paymentMethod
+                        width: 72
+                        height: 16
+                        text: qsTr("Sposób płatności:")
+                    }
+
+                    ComboBox {
+                        id: comboBox_paymentMethod
+                        width: parent.width
+                        height: 21
+                    }
+                }
+
+
+            }
+
+            ColumnLayout {
+                id: columnLayout_OtherData
+                width: prent.width * 0.4
+                height: 249
+
+
+
+                ColumnLayout {
+                    id: columnLayout_sellingDate
+                    width: 100
+                    height: 100
+
+                    Label {
+                        id: label_sellingDate
+                        text: qsTr("Data sprzedaży:")
+                    }
+
+                    TextField {
+                        id: textField_sellingDate
+                        height: 42
+                        placeholderText: qsTr("Data sprzedaży")
+                    }
+                }
+                ColumnLayout {
+                    id: columnLayout_sellingPlace
+                    width: 100
+                    height: 100
+
+                    Label {
+                        id: label_sellingPlace
+                        text: qsTr("Miejsce wystawienia:")
+                    }
+
+                    TextField {
+                        id: textField_sellingPlace
+                        height: 20
+                        placeholderText: qsTr("Miejsce wystawienia")
+                    }
+                }
+
+                ColumnLayout {
+                    id: columnLayout_invoiceNumber
+                    width: 100
+                    height: 100
+
+
+                    Label {
+                        id: label_invoiceNumber
+                        text: qsTr("Indywidualny numer rachunku:")
+                    }
+                    RowLayout {
+                        id: rowLayout_invoiceNumber
+                        width: 100
+                        height: 100
+
+                        Switch {
+                            id: switch_invoiceNumber
+                            text: qsTr("")
+                        }
+
+                        TextField {
+                            id: textField_invoiceNumber
+                            placeholderText: qsTr("Numer rachunku")
+                        }
+                    }
+                }
+            }
+
+        }
+
+        RowLayout {
+            id: rowLayout_recordsOnInvoice
+            width: 100
+            height: 100
+
+            ColumnLayout {
+                id: columnLayout2
+                width: 100
+                height: 100
+
+                RowLayout {
+                    id: rowLayout
+                    width: 100
+                    height: 100
+
+                    ColumnLayout {
+                        id: columnLayout
+                        width: 100
+                        height: 100
+
+                        Label {
+                            id: label1
+                            text: qsTr("Label")
+                        }
+
+                        ComboBox {
+                            id: comboBox
+                        }
+                    }
+
+                    ColumnLayout {
+                        id: columnLayout1
+                        width: 100
+                        height: 100
+
+
+                        Label {
+                            id: label2
+                        }
+                        Button {
+                            id: button1
+                            text: qsTr("Dodaj")
+                            highlighted: false
+                            flat: false
+                        }
+                    }
+                }
+
+                RowLayout {
+                    id: rowLayout_records
+                    width: 100
+                    height: 100
+
+                    TableView {
+                        x: parent.width * 0.8
+//                        y:comboBox_seller.y + comboBox_seller.height + 20
+                        anchors.centerIn: parent
+                        anchors.left: parent
+                        anchors.leftMargin: parent.width * 0.1
+                        anchors.top: parent
+                        width: 500
+                        height: 300
+                        columnSpacing: 0
+                        rowSpacing: 1
+                        boundsBehavior: Flickable.StopAtBounds
+
+                        model: TableModel {
+                            TableModelColumn { display: "checked" }
+                            TableModelColumn { display: "amount" }
+                            TableModelColumn { display: "fruitType" }
+                            TableModelColumn { display: "fruitName" }
+                            TableModelColumn { display: "fruitPrice" }
+
+                            // Each row is one type of fruit that can be ordered
+                            rows: [
+                                {
+                                    // Each property is one cell/column.
+                                    checked: false,
+                                    amount: 1,
+                                    fruitType: "Apple",
+                                    fruitName: "Granny Smith",
+                                    fruitPrice: 1.50
+                                },
+                                {
+                                    checked: true,
+                                    amount: 4,
+                                    fruitType: "Orange",
+                                    fruitName: "Navel",
+                                    fruitPrice: 2.50
+                                },
+                                {
+                                    checked: false,
+                                    amount: 1,
+                                    fruitType: "Banana",
+                                    fruitName: "Cavendish",
+                                    fruitPrice: 3.50
+                                }
+                            ]
+                        }
+                        delegate: DelegateChooser {
+
+                            DelegateChoice {
+                                column: 0
+                                delegate: CheckBox {
+                                    checked: model.display
+                                    onToggled: model.display = checked
+                                }
+                            }
+                            DelegateChoice {
+                                column: 1
+                                delegate: SpinBox {
+                                    value: model.display
+                                    onValueModified: model.display = value
+                                }
+                            }
+                            DelegateChoice {
+                                delegate: TextField {
+                                    text: model.display
+                                    selectByMouse: true
+                                    implicitWidth: 100
+                                    onAccepted: model.display = text
+                                }
+                            }
+                        }
+                    }
+
+                    Button {
+                        id: button2
+                        width: 150
+                        height: 40
+                        text: qsTr("Usuń")
+                    }
+                }
+
+                RowLayout {
+                    id: rowLayout2
+                    width: 100
+                    height: 100
+
+                    Button {
+                        width: 150
+                        height: 40
+                        id: button
+                        text: qsTr("Generate PDF")
+
+                        //onPressed: f.createFV()
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+
+/*##^##
+Designer {
+    D{i:0;autoSize:true;formeditorZoom:1.25;height:480;width:640}D{i:18}D{i:19}D{i:24}
+D{i:27}D{i:35}D{i:28;invisible:true;locked:true}
+}
+##^##*/

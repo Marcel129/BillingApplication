@@ -6,7 +6,7 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Stack")
+    title: qsTr("Zielony Kram")
 
     header: ToolBar {
         contentHeight: toolButton.implicitHeight
@@ -60,6 +60,11 @@ ApplicationWindow {
     StackView {
         id: stackView
         initialItem: "HomeForm.ui.qml"
-        anchors.fill: parent
+        anchors.centerIn: parent
+        width: parent.width
+        height: parent.height
+//        anchors.left: parent
+//        anchors.top: parent
     }
+
 }

@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <windows.h>
+#include "config.hh"
 
 #define MIN_RABAT_VALUE 0
 #define MAX_RABAT_VALUE 100

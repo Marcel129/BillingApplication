@@ -2,24 +2,43 @@
 #include "inc\\FVtemplate.hh"
 #include "inc\\FV.hh"
 #include "inc\\FVData.hh"
+#include "inc\\Client_data.hh"
+#include "inc\\config.hh"
+
 
 int main()
 {
-    FV f;
+    // FV f;
 
-    if (!f.init())
-    {
-        std::cout << "Inicjalizacja fv nie powiodła sie";
-        exit(1);
-    }
+    // if (!f.init())
+    // {
+    //     std::cout << "Inicjalizacja fv nie powiodła sie";
+    //     exit(1);
+    // }
 
-    FVRecord a("tuja", 15, 16), b("jalowiec", 20, 5, 15);
-    f.addRecord(a);
-    f.addRecord(b);
+    // FVRecord a("tuja", 15, 16), b("jalowiec", 20, 5, 15);
+    // f.addRecord(a);
+    // f.addRecord(b);
 
-    f.setAddingReciper(true);
-    f.insertValuesIntoKeywords();
-    f.createFV();
+    // f.setAddingReciper(true);
+    // f.insertValuesIntoKeywords();
+    // f.createFV();
+
+//     std::fstream temp;
+//     std::string tmp_text = "";
+
+//     temp.open(resourcesPath + "1234.csv", std::ios::in);
+//     if (!temp)
+//     {
+//         std::cout << "Unable to open template file";
+//         exit(1);
+//     }
+// getline(temp, tmp_text);getline(temp, tmp_text);
+//     std::cout<<"-"<<tmp_text<<"-"<<std::endl;
+
+Recipers_r c;
+c.load();
+
 
     // std::string keyword = "\%tuTwojeImie";
     // std::string a = "Pies poszedl sie jebac " +keyword+ " i nie wrocil";
