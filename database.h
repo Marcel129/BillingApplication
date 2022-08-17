@@ -5,6 +5,7 @@
 
 #include <customer.h>
 #include <config.h>
+#include <products.h>
 
 class database : public QObject
 {
@@ -12,6 +13,7 @@ class database : public QObject
     bool isLoaded;
     QVector<customer> customers;
     QVector<seller> sellers;
+    QVector<product> products;
     QStringList paymentMethods;
 
 public:
@@ -26,6 +28,7 @@ public:
 
     const QVector<customer> &getCustomers() const;
     const QVector<seller> &getSellers() const;
+    const QVector<product> &getProducts() const;
 
 public slots:
 
@@ -33,6 +36,7 @@ public slots:
     //returns recipers list for customer
     const QStringList getRecipersNames(const QString & custName);
     const QStringList getSellersNames()const;
+    const QStringList getProductsPolishNames() const;
     const QStringList getPaymentMethods()const;
 
 signals:

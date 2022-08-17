@@ -1,22 +1,22 @@
 #include "invoicetemplate.h"
 
-FVTemplate::FVTemplate(QObject *parent)
+InvoiceTemplate::InvoiceTemplate(QObject *parent)
     : QObject{parent}
 {
 
 }
 
-QString FVTemplate::getPart(FVTemplatePart a)
+QString InvoiceTemplate::getPart(FVTemplatePart a)
 {
     return parts.at(a);
 };
 
-QStringList & FVTemplate::getAllParts(){
+QStringList & InvoiceTemplate::getAllParts(){
     return parts;
 }
 
 
-bool FVTemplate::load()
+bool InvoiceTemplate::load()
 {
     QFile mfile(resourcesPath + FVLTemplateDefaultFileName);
     QString tmp_text("");
@@ -62,7 +62,7 @@ bool FVTemplate::load()
     return is_loaded;
 }
 
-void FVTemplate::insertValuesIntoKeywords(
+void InvoiceTemplate::insertValuesIntoKeywords(
         seller Seller,
         customer buyer,
         reciper recip,
@@ -99,7 +99,7 @@ void FVTemplate::insertValuesIntoKeywords(
     }
 }
 
-void FVTemplate::refresh(){
+void InvoiceTemplate::refresh(){
     parts = sourceParts;
 };
 

@@ -19,17 +19,39 @@ const QString FVRecord_unit_DefValue( "szt.");
 const QString FVTableElemSeparator_DefValue(" & ");
 const QString FVTable_EOL_DefValue(" \\\\ \\hline");
 
-struct InvoiceRecord
+class InvoiceRecord
 {
     QString productName;
     QString PKWiU;
     QString unit;
-    float rabat;
+    double rabat;
     unsigned int quantity;
-    float price;
-    float totalValue;
+    double price;
+    double totalValue;
 
-    InvoiceRecord(QString,unsigned int,float,float,QString,QString);
+public:
+    InvoiceRecord(
+            QString,
+            unsigned int,
+            double,
+            double r = 0,
+            QString u=FVRecord_unit_DefValue,
+            QString p=FVRecord_PKWiU_DefValue);
+
+    const QString &getProductName() const;
+    void setProductName(const QString &newProductName);
+    const QString &getPKWiU() const;
+    void setPKWiU(const QString &newPKWiU);
+    const QString &getUnit() const;
+    void setUnit(const QString &newUnit);
+    double getRabat() const;
+    void setRabat(double newRabat);
+    unsigned int getQuantity() const;
+    void setQuantity(unsigned int newQuantity);
+    double getPrice() const;
+    void setPrice(double newPrice);
+    double getTotalValue() const;
+    void setTotalValue(double newTotalValue);
 };
 
 QTextStream& operator<<(QTextStream& os, const InvoiceRecord& rec);

@@ -14,6 +14,7 @@ const char CSVSplitTag = ';';
 
 const QString CustomersDatabasePath = resourcesPath + "Customers_database.csv";
 const QString SellersDatabasePath = resourcesPath + "Sellers_database.csv";
+const QString ProductsDatabasePath = resourcesPath + "Plants_database.csv";
 const QString PaymentMethodsPath = resourcesPath + "Payment_methods.csv";
 
 const QString outputDateFormat("d MMMM yyyy");

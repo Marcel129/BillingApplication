@@ -15,12 +15,18 @@ const QVector<seller> &database::getSellers() const
     return sellers;
 }
 
+const QVector<product> &database::getProducts() const
+{
+    return products;
+}
+
 database::database(QObject *parent)
     : QObject{parent}
 {
     isLoaded =  loadCustomers() &&
             loadSellers() &&
-            loadPaymentMethods();
+            loadPaymentMethods() &&
+            loadProducts();
 }
 
 bool database::loadCustomers(){
@@ -100,6 +106,41 @@ bool database::loadPaymentMethods()
     return true;
 }
 
+bool database::loadProducts()
+{
+    QFile mfile(ProductsDatabasePath);
+    QString tmp_text = "";
+    QStringList tmp_vec;
+
+    if (!mfile.open(QIODevice::ReadOnly))
+    {
+        qDebug() << "Unable to open products database ";
+        return false;
+    }
+
+    QTextStream inStream(&mfile);
+
+    do
+    {
+        tmp_text = inStream.readLine();
+
+        // ignore comments
+        if (tmp_text[0] == CommentTag)
+            continue;
+
+        tmp_vec = tmp_text.split(CSVSplitTag);
+
+        product p(tmp_vec);
+        if(p.getPolishName() != ""){
+            products.push_back(p);
+        }
+
+    } while (!inStream.atEnd());
+
+    qDebug()<< "Succesfully loaded products database";
+    return true;
+}
+
 bool database::loadSellers()
 {
     QFile mfile(SellersDatabasePath);
@@ -160,6 +201,15 @@ const QStringList database::getSellersNames() const{
         s.push_back(e.getName());
     }
     return s;
+}
+
+const QStringList database::getProductsPolishNames() const
+{
+    QStringList a;
+    for(const auto & p: products){
+        a.push_back(p.getPolishName());
+    }
+    return a;
 }
 
 const QStringList database::getPaymentMethods() const{

@@ -25,7 +25,7 @@ Item {
             border.color: "brown"
             border.width: 1
         }
-onCurrentTextChanged: console.log(__currentText)
+
     }
     Text{
         id: txt

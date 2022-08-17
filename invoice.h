@@ -15,12 +15,7 @@
 #include <database.h>
 #include <config.h>
 
-class invoice : public QObject
-{
-    Q_OBJECT
-    FVTemplate invoiceTemplate;
-    QSharedPointer<database>  mDatabase;
-
+class invoiceBase{
     QVector<InvoiceRecord> records;
     seller Seller;
     customer buyer;
@@ -31,22 +26,7 @@ class invoice : public QObject
     QDate billingDate;//data wystawienia rachunku
     QString paymentDeadline;
 
-    //przenieść tu wszystkie parametry rachunku
-    bool is_inited;
-    bool isReciperAdded;
-
-    //creates latex file with invoice, ready to compilation
-    void createLatexInvoice();
-    //creates PDF filr with prepared latex file
-    void createPDFInvoice();
-
-public:
-    explicit invoice(QSharedPointer<database> d, QObject *parent = nullptr);
-    bool isInited()const;
-    void addRecord(const InvoiceRecord & record);
-//    void setAddingReciper(bool value);
-    void clearData();
-
+  public:
     const QVector<InvoiceRecord> &getRecords() const;
     void setRecords(const QVector<InvoiceRecord> &newRecords);
 
@@ -70,6 +50,29 @@ public:
 
     const QDate &getBillingDate() const;
     void setBillingDate(const QDate &newBillingDate);
+public slots:
+};
+
+class invoice : public QObject, protected invoiceBase
+{
+    Q_OBJECT
+    InvoiceTemplate invoiceTemplate;
+    QSharedPointer<database>  mDatabase;
+
+    bool is_inited;
+
+    //creates latex file with invoice, ready to compilation
+    void createLatexInvoice();
+    //creates PDF file with prepared latex file
+    void createPDFInvoice();
+
+public:
+    explicit invoice(QSharedPointer<database> d, QObject *parent = nullptr);
+    bool isInited()const;
+
+    void addRecord(const InvoiceRecord & record);
+
+    void clearData();
 
 public slots:
     void createInvoice();
@@ -82,6 +85,7 @@ public slots:
     void setBillingDate(const QString &newBillingDate);
     QString getSellingDate_String();
     QString getBillingPalce() const;
+    bool addRecord(const QString n, const QString  q, const QString p, const QString r);
 signals:
 
 };

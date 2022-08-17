@@ -5,7 +5,6 @@ invoice::invoice(QSharedPointer<database> d, QObject *parent)
 {
     if(!is_inited){
         is_inited = this->invoiceTemplate.load();
-        isReciperAdded = true;
         mDatabase = d;
         saleDate = QDate::currentDate();
         billingDate = QDate::currentDate();
@@ -25,27 +24,40 @@ void invoice::addRecord(const InvoiceRecord & record){
     this->records.push_back(record);
 }
 
+bool invoice::addRecord(const QString n, const QString q, const QString p,  const QString r)
+{
+    bool isConverted = false;
+    InvoiceRecord rec(n,
+                      q.toUInt(&isConverted),
+                      p.toDouble(&isConverted),
+                      r.toDouble(&isConverted));
+    if(isConverted){
+        records.push_back(rec);
+        return true;
+    }
+    return false;
+}
+
 void invoice::clearData()
 {
+    seller s;
+    customer c;
+    reciper r;
+
     invoiceTemplate.refresh();
 
     records.clear();
-    seller s;
     Seller = s;
-    customer c;
-    customer buyer= c;
-    reciper r;
-    reciper recip = r;
+    buyer= c;
+    recip = r;
     paymentMethod = "";
     billingPalce= "";
     saleDate = QDate::currentDate();
     billingDate =  QDate::currentDate();
     paymentDeadline = "";
-}
 
-//void invoice::setAddingReciper(bool value){
-//    isReciperAdded = value;
-//}
+
+}
 
 const QVector<InvoiceRecord> &invoice::getRecords() const
 {

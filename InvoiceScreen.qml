@@ -116,6 +116,12 @@ Item {
                 top: addPlantRoot.top
                 leftMargin: __generalMargins
             }
+            onClicked: {
+                myInvoice.addRecord(plantName.__currentText,
+                                    plantAmmount.text,
+                                    plantPrice.text,
+                                    plantRabat.text)
+            }
         }
 
         LineEdit{
@@ -157,7 +163,7 @@ Item {
         ChooseField{
             id:plantName
             caption: "Nazwa"
-            __model: my_class_instantiondupa.getList()
+            __model: myDatabase.getProductsPolishNames()
             anchors{
                 top: addPlantRoot.top
                 left: addPlantRoot.left

@@ -8,6 +8,7 @@ SOURCES += \
         customer.cpp \
         database.cpp \
         invoice.cpp \
+        invoicebase.cpp \
         invoicerecord.cpp \
         invoicetemplate.cpp \
         main.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
     customer.h \
     database.h \
     invoice.h \
+    invoicebase.h \
     invoicerecord.h \
     invoicetemplate.h \
     my_classs.h \

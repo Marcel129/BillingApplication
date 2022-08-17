@@ -39,7 +39,7 @@ enum FVTemplatePart
 };
 
 
-class FVTemplate : public QObject
+class InvoiceTemplate : public QObject
 {
     Q_OBJECT
     QStringList parts;
@@ -47,7 +47,7 @@ class FVTemplate : public QObject
     bool is_loaded;
 
 public:
-    explicit FVTemplate(QObject *parent = nullptr);
+    explicit InvoiceTemplate(QObject *parent = nullptr);
     QString getPart(FVTemplatePart a);
     QStringList & getAllParts();
     bool load();
