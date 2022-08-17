@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>images/mouse.png</file>
+        <file>images/car.gif</file>
+        <file>MenuBar.qml</file>
+        <file>BarButton.qml</file>
+        <file>LineEdit.qml</file>
+        <file>InvoiceScreen.qml</file>
+        <file>ClientsScreen.qml</file>
+        <file>ChooseField.qml</file>
+        <file>PlantsScreen.qml</file>
+    </qresource>
+</RCC>
