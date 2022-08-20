@@ -42,11 +42,11 @@ public:
 class Reciper_r
 {
     std::vector<Client> Clients;
+    std::string NIP;
     std::string name;
     std::string adress;
     std::string town;
     std::string postal_code;
-    std::string NIP;
 
 public:
     Reciper_r(Client r, std::string n, std::string a, std::string t, std::string p, std::string ni);

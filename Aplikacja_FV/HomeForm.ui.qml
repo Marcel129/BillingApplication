@@ -51,6 +51,7 @@ Page {
                 }
                 ComboBox {
                     Layout.fillWidth: true
+                    displayText: "asdfghg"
                 }
             }
             ColumnLayout {
@@ -117,6 +118,7 @@ Page {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.row: 1
+                clip: true
                 Layout.column: 0
 
                 columnSpacing: 0
@@ -201,6 +203,7 @@ Page {
                 text: "Utwórz"
                 Layout.row: 2
                 Layout.column: 1
+                onPressed: f.createFV()
                 Layout.alignment: Qt.AlignBottom | Qt.AlignRight
             }
         }

@@ -12,12 +12,12 @@ int main(int argc, char *argv[])
 #endif
     QGuiApplication app(argc, argv);
 
-     Plants p;
-     Recipers_r c;
-     c.load();
-          p.load();
- p.saveInFile();
-           c.saveInFile();
+    Plants p;
+    Recipers_r c;
+    c.load();
+    p.load();
+    p.saveInFile();
+    c.saveInFile();
 
     FV f;
 
