@@ -90,6 +90,19 @@ InvoiceRecord::InvoiceRecord(QString pn,
     totalValue = double(quantity)*price - double(quantity)*price*rabat/100.0;
 }
 
+InvoiceRecord::InvoiceRecord(const QStringList & l)
+{
+    if(l.size() >= recordElementsCount){
+        productName = l[0];
+        PKWiU = l[2];
+        unit = l[4];
+        rabat = l[1].toDouble();
+        quantity = l[3].toUInt();
+        price = l[5].toDouble();
+        totalValue = l[6].toDouble();
+    }
+}
+
 QTextStream& operator<<(QTextStream& os, const InvoiceRecord& rec){
     os << rec.getProductName() << FVTableElemSeparator_DefValue <<
           rec.getRabat()<< "\\% " << FVTableElemSeparator_DefValue <<

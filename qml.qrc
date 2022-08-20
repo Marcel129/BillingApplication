@@ -10,5 +10,10 @@
         <file>ClientsScreen.qml</file>
         <file>ChooseField.qml</file>
         <file>PlantsScreen.qml</file>
+        <file>InvoiceTableHeader.qml</file>
+        <file>OptionsScreen.qml</file>
+        <file>InvHeaderElem_bck.qml</file>
+        <file>InvElem_bck.qml</file>
+        <file>InvFooter.qml</file>
     </qresource>
 </RCC>

@@ -68,7 +68,7 @@ customer::customer()
 }
 
 customer::customer(const QStringList &c){
-    if(c.size() ==customerElementsCount){
+    if(c.size() >=customerElementsCount){
         name = c[0];
         adress = c[1];
         town = c[2];
@@ -121,7 +121,7 @@ reciper::reciper()
 }
 
 reciper::reciper(const QStringList &r){
-    if(r.size() == reciperElementsCount){
+    if(r.size() >= reciperElementsCount){
         name = r[0];
         adress = r[1];
         town = r[2];
@@ -159,7 +159,7 @@ seller::seller()
 }
 
 seller::seller(const QStringList &r){
-    if(r.size() == sellerElementsCount){
+    if(r.size() >= sellerElementsCount){
         if(r[0].size() != 0){
             bussinessName=r[0];
             name =r[1];

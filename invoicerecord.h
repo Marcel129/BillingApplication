@@ -19,6 +19,8 @@ const QString FVRecord_unit_DefValue( "szt.");
 const QString FVTableElemSeparator_DefValue(" & ");
 const QString FVTable_EOL_DefValue(" \\\\ \\hline");
 
+const int recordElementsCount = 6;
+
 class InvoiceRecord
 {
     QString productName;
@@ -37,6 +39,7 @@ public:
             double r = 0,
             QString u=FVRecord_unit_DefValue,
             QString p=FVRecord_PKWiU_DefValue);
+    InvoiceRecord(const QStringList &);
 
     const QString &getProductName() const;
     void setProductName(const QString &newProductName);

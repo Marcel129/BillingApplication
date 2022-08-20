@@ -61,7 +61,7 @@ product::product()
 
 product::product(const QStringList &pl)
 {
-    if(pl.size() == productsElementsCount){
+    if(pl.size() >= productsElementsCount){
         type = pl[0];
         latinName = pl[1];
         polishName = pl[2];

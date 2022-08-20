@@ -11,28 +11,61 @@ Window{
     visible:true
     color: "lightgrey"
     title: "Zielony Kram"
+    property bool isHiding: false
+
+    //saving data when the window is closing (to correct)
+    onVisibleChanged: {
+        if(isHiding){
+            myDatabase.saveInvoicesRegister()
+        }
+        isHiding = true
+    }
 
     MenuBar{
         id: menuBar
         width: parent.width/5 > 200 ?  200 : parent.width/5 < 100 ? 100 : parent.width/5
+        property string __focusedElem: bb1.text
 
         BarButton{
             id: bb1
             y: parent.height/6 + ( bb1.height + 10)*0
             text: "Rachunek"
-            onClicked:  load1.source = "InvoiceScreen.qml"
+            __textBold: menuBar.__focusedElem == text
+            onClicked:  {
+                 load1.source = "InvoiceScreen.qml"
+               menuBar.__focusedElem = text
+            }
+
         }
         BarButton{
             id: bb2
             y: parent.height/6 + ( bb1.height + 10)*1
             text: "Kontrahenci"
-            onClicked:  load1.source = "ClientsScreen.qml"
+            __textBold: menuBar.__focusedElem == text
+            onClicked:  {
+                 menuBar.__focusedElem = text
+                load1.source = "ClientsScreen.qml"
+            }
         }
         BarButton{
             id: bb3
             y: parent.height/6 + ( bb1.height + 10)*2
             text: "Produkty"
-            onClicked:  load1.source = "PlantsScreen.qml"
+            __textBold: menuBar.__focusedElem == text
+            onClicked:{
+                 menuBar.__focusedElem = text
+                load1.source = "PlantsScreen.qml"
+            }
+        }
+        BarButton{
+            id: bb4
+            y: (parent.height - height) - parent.height*0.2
+            text: "Opcje"
+            __textBold: menuBar.__focusedElem == text
+            onClicked: {
+                load1.source = "OptionsScreen.qml"
+                 menuBar.__focusedElem = text
+            }
         }
     }
 
@@ -46,6 +79,7 @@ Window{
         }
         source: "InvoiceScreen.qml"
     }
+
 }
 
 

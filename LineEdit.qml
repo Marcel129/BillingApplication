@@ -8,11 +8,12 @@ Item{
     property alias  text: ti1.text
     property alias caption: cap.text
     property alias __disable: ti1.readOnly
+    property alias __textColor: ti1.color
     Rectangle{
         id:rootRec
         border.color: "brown"
         border.width: 1
-        radius: 4
+//        radius: 4
         anchors.fill: parent
 
         MouseArea {

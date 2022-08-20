@@ -16,12 +16,12 @@ const QString FVLDefaultFileName("FakturaVAT");
 const QString FVLTemplateDefaultFileName("Invoice_template.tex");
 const QString FVLDefaultFileName_Latex(FVLDefaultFileName + ".tex");
 
-const QVector<QString> filesToDelete =
-{
-    FVLDefaultFileName + ".log",
-    FVLDefaultFileName + ".tex",
-    FVLDefaultFileName + ".aux"
-};
+//const QVector<QString> filesToDelete =
+//{
+//    FVLDefaultFileName + ".log",
+//    FVLDefaultFileName + ".tex",
+//    FVLDefaultFileName + ".aux"
+//};
 
 enum FVTemplatePart
 {
@@ -60,7 +60,8 @@ public:
             QString billingPalce,
             QDate billingDate,
             QDate saleDate,
-            QString paymentDeadline);
+            QDate paymentDeadline,
+            QString invoiceNumber);
 
     void refresh();
 

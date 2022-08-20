@@ -7,7 +7,7 @@
 
 #include <config.h>
 
-const unsigned int productsElementsCount = 5;
+const int productsElementsCount = 5;
 
 class product
 {

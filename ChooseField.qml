@@ -21,7 +21,7 @@ Item {
         background: Rectangle{
             anchors.fill: parent
             color: "white"
-            radius: 4
+//            radius: 4
             border.color: "brown"
             border.width: 1
         }

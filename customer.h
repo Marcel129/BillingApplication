@@ -5,9 +5,9 @@
 #include <QFile>
 #include <QVector>
 
-const unsigned int reciperElementsCount = 4;
-const unsigned int customerElementsCount = 5;
-const unsigned int sellerElementsCount = 10;
+const int reciperElementsCount = 4;
+const int customerElementsCount = 5;
+const int sellerElementsCount = 10;
 
 class reciper{
 protected:

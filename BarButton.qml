@@ -3,6 +3,7 @@ import QtQuick 2.0
 Item{
     id:bb
     property alias text: tx1.text
+    property alias __textBold: tx1.font.bold
     height: 40
     anchors{
         left: parent.left

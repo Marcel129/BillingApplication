@@ -9,6 +9,9 @@ invoice::invoice(QSharedPointer<database> d, QObject *parent)
         saleDate = QDate::currentDate();
         billingDate = QDate::currentDate();
         billingPalce = defaultBillingPlace;
+        paymentDeadline = QDate::currentDate();
+        //        invoiceNumber = defaultInvoiceNumber;
+        setNewInvoiceNumber();
     }
     else{
         is_inited = false;
@@ -38,6 +41,51 @@ bool invoice::addRecord(const QString n, const QString q, const QString p,  cons
     return false;
 }
 
+void invoice::setNewInvoiceNumber(const QString &nin){
+    //invoice number is calculating automaticly
+    if(nin == ""){
+        QString newNumber = mDatabase->getLatestInvoiceNumber();
+        QDate tmpDate = QDate::currentDate();
+        QString m = QString::number(tmpDate.month()),
+                y=QString::number(tmpDate.year());
+
+        if(newNumber == ""){
+            invoiceNumber = "1/" + m + "/"+y;
+        }
+        else{
+            QStringList mList= newNumber.split("/");
+            if(mList[1] == m){
+                int in = mList[0].toInt() +1;
+                QString d = QString::number(in);
+                invoiceNumber = d+"/" + m + "/"+y;
+            }
+            else{
+                invoiceNumber = "1/" + m + "/"+y;
+            }
+        }
+    }
+    //invoice number is given apriori
+    else{
+        invoiceNumber = nin;
+    }
+    qDebug()<<"numer faktury: "<<invoiceNumber;
+}
+
+const QString invoice::getNewInvoiceNumber() const
+{
+    return invoiceNumber;
+}
+
+void invoice::setInvoiceNumber_slot(const QString &nin)
+{
+    invoiceNumber = nin;
+}
+
+const QString invoice::getInvoiceNumber_slot() const
+{
+    return invoiceNumber;
+}
+
 void invoice::clearData()
 {
     seller s;
@@ -54,34 +102,11 @@ void invoice::clearData()
     billingPalce= "";
     saleDate = QDate::currentDate();
     billingDate =  QDate::currentDate();
-    paymentDeadline = "";
-
-
-}
-
-const QVector<InvoiceRecord> &invoice::getRecords() const
-{
-    return records;
-}
-
-void invoice::setRecords(const QVector<InvoiceRecord> &newRecords)
-{
-    records = newRecords;
-}
-
-const customer &invoice::getBuyer() const
-{
-    return buyer;
-}
-
-void invoice::setBuyer(const customer &newBuyer)
-{
-    buyer = newBuyer;
+    paymentDeadline =  QDate::currentDate();;
 }
 
 void invoice::setBuyer(const QString &newBuyer)
 {
-    qDebug()<<"Ustawiono odbiorce: "<<newBuyer;
     for(const customer & c: mDatabase->getCustomers()){
         if(c.getName() == newBuyer){
             buyer = c;
@@ -89,17 +114,12 @@ void invoice::setBuyer(const QString &newBuyer)
     }
 }
 
-const QString &invoice::getPaymentMethod() const
-{
-    return paymentMethod;
-}
-
 void invoice::setPaymentMethod(const QString &newPaymentMethod)
 {
     paymentMethod = newPaymentMethod;
 }
 
-QString invoice::getBillingPalce() const
+QString invoice::getBillingPalce()
 {
     return billingPalce;
 }
@@ -109,40 +129,10 @@ void invoice::setBillingPalce(const QString &newBillingPalce)
     billingPalce = newBillingPalce;
 }
 
-const QDate &invoice::getSaleDate() const
-{
-    return saleDate;
-}
-
-void invoice::setSaleDate(const QDate &newSaleDate)
-{
-    saleDate = newSaleDate;
-}
-
 void invoice::setSaleDate(const QString &newSaleDate)
 {
     QString a = newSaleDate;
-    saleDate = QDate::fromString(a, "d.M.yyyy");
-}
-
-const QString &invoice::getPaymentDeadline() const
-{
-    return paymentDeadline;
-}
-
-void invoice::setPaymentDeadline(const QString &newPaymentDeadline)
-{
-    paymentDeadline = newPaymentDeadline;
-}
-
-const seller &invoice::getSeller() const
-{
-    return Seller;
-}
-
-void invoice::setSeller(const seller &newSeller)
-{
-    Seller = newSeller;
+    saleDate = QDate::fromString(a, inputDateFormat);
 }
 
 void invoice::setSeller(const QString &newSeller)
@@ -154,16 +144,6 @@ void invoice::setSeller(const QString &newSeller)
     }
 }
 
-const reciper &invoice::getRecip() const
-{
-    return recip;
-}
-
-void invoice::setRecip(const reciper &newRecip)
-{
-    recip = newRecip;
-}
-
 void invoice::setRecip(const QString &newRecip)
 {
     for(const reciper & r: buyer.getRecipers()){
@@ -171,16 +151,6 @@ void invoice::setRecip(const QString &newRecip)
             recip = r;
         }
     }
-}
-
-const QDate &invoice::getBillingDate() const
-{
-    return billingDate;
-}
-
-void invoice::setBillingDate(const QDate &newBillingDate)
-{
-    billingDate = newBillingDate;
 }
 
 void invoice::setBillingDate(const QString &newBillingDate)
@@ -196,7 +166,11 @@ QString invoice::getSellingDate_String(){
 
 void invoice::createLatexInvoice(){
 
-    QFile mFile(FVpath  + FVLDefaultFileName_Latex);
+    QString tmpNum = invoiceNumber, tmpBuy =buyer.getName();
+    removePolishDiacritics(tmpBuy);
+    invoiceFileName = "Rachunek_Nr_" + tmpNum.replace("/",".") + "_" + tmpBuy.replace(" ", "_");
+
+    QFile mFile(FVpath  + invoiceFileName +".tex");
     if(!mFile.open(QIODevice::ReadWrite)){
         qDebug()<< "Unable to create FV file";
         exit(1);
@@ -234,7 +208,15 @@ void invoice::createLatexInvoice(){
 
 void invoice::createPDFInvoice(){
     QString tmp;
-    tmp = "pdflatex -quiet -output-directory=" + FVpath +" " + FVpath + FVLDefaultFileName_Latex;
+
+    const QVector<QString> filesToDelete =
+    {
+        invoiceFileName + ".log",
+        invoiceFileName + ".tex",
+        invoiceFileName + ".aux"
+    };
+
+    tmp = "pdflatex -quiet -output-directory=" + FVpath +" " + FVpath + invoiceFileName+".tex";
     system(tmp.toStdString().c_str());
 
     for(const QString & a: filesToDelete){
@@ -252,8 +234,13 @@ void invoice::createInvoice(){
                 billingPalce,
                 billingDate,
                 saleDate,
-                paymentDeadline);
+                paymentDeadline,
+                invoiceNumber);
     createLatexInvoice();
     createPDFInvoice();
+    //    saveInvoiceInRegister();
+    mDatabase->addInvoiceToRegister(*this);
     clearData();
+
+    setNewInvoiceNumber();
 }
