@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.7
 import QtQuick.Controls 2.0
 
 Item{
@@ -11,9 +11,9 @@ Item{
     property alias __textColor: ti1.color
     Rectangle{
         id:rootRec
-        border.color: "brown"
+        border.color: "#5865F2"
         border.width: 1
-//        radius: 4
+        radius: 4
         anchors.fill: parent
 
         MouseArea {
@@ -33,6 +33,7 @@ Item{
             font.pixelSize: 18
             verticalAlignment: Text.AlignVCenter
             font.family: "Tahoma"
+            leftPadding: 10
         }
 
         Text{
@@ -43,7 +44,7 @@ Item{
                 left: rootRec.left
             }
             font.pixelSize: 15
-            font.family: "Times New Roman"
+            font.family: "Raleway"
         }
     }
 }

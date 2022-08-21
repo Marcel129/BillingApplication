@@ -13,7 +13,7 @@ Item {
 
     ComboBox{
         id:rootBox
-        font.pixelSize: rootBox.height - 18
+        font.pixelSize: 18
         font.family: "Tahoma"
         padding: 0
         anchors.fill: parent
@@ -21,8 +21,8 @@ Item {
         background: Rectangle{
             anchors.fill: parent
             color: "white"
-//            radius: 4
-            border.color: "brown"
+            radius: 4
+            border.color: "#5865F2"
             border.width: 1
         }
 
@@ -35,6 +35,6 @@ Item {
             bottomMargin: 2
         }
         font.pixelSize: 15
-        font.family: "Times New Roman"
+        font.family: "Raleway"
     }
 }

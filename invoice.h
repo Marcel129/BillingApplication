@@ -48,13 +48,33 @@ public slots:
     void setBillingDate(const QString &newBillingDate);
     QString getSellingDate_String();
     QString getBillingPalce();
-    bool addRecord(const QString n, const QString  q, const QString p, const QString r);
 
     void setNewInvoiceNumber(const QString  & nin = "");
     const QString getNewInvoiceNumber() const;
 
     void setInvoiceNumber_slot(const QString  & nin = "");
     const QString getInvoiceNumber_slot() const;
+
+    bool addRecord(const QString n, const QString  q, const QString p, const QString r);
+    bool removeInvRecordAt(int position);
+
+    double getTotalToPay()const{
+        double ttp =0;
+        for(const auto & r: records){
+            ttp += r.getTotalValue();
+        }
+        return ttp;
+    }
+    const QString getTotalToPay_String()const{
+        return QString::number(getTotalToPay(),'d',2);
+    }
+
+signals:
+    void preInvAddRecord();
+    void postInvAddRecord();
+    void preInvRemoveRecord(int index);
+    void postInvRemoveRecord();
+
 signals:
 
 };

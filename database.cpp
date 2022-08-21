@@ -466,7 +466,7 @@ const QStringList database::getProductsPolishNames() const
 {
     QStringList a;
     for(const auto & p: products){
-        a.push_back(p.getPolishName());
+        a.push_back(p.getPolishName()+" "+p.getSpecies());
     }
     return a;
 }

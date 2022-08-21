@@ -15,5 +15,6 @@
         <file>InvHeaderElem_bck.qml</file>
         <file>InvElem_bck.qml</file>
         <file>InvFooter.qml</file>
+        <file>RegisterScreen.qml</file>
     </qresource>
 </RCC>

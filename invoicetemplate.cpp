@@ -71,7 +71,8 @@ void InvoiceTemplate::insertValuesIntoKeywords(
         QDate billingDate,
         QDate saleDate,
         QDate paymentDeadline,
-        QString invoiceNumber){
+        QString invoiceNumber,
+        double totalSum){
 
     for(QString & s: parts){
         s.replace("KEYWORD-SELLER-BUSSINES-FULL-NAME", Seller.getBussinessName());
@@ -92,7 +93,7 @@ void InvoiceTemplate::insertValuesIntoKeywords(
         s.replace("KEYWORD-RECIPER-ADRESS-1",recip.getAdress());
         s.replace("KEYWORD-RECIPER-ADRESS-2", recip.getPostal_code() +" "+ recip.getTown());
         s.replace("KEYWORD-INVOICE-NUMBER",invoiceNumber);
-        //            s.replace("KEYWORD-TOTAL-TO-PAY");
+        s.replace("KEYWORD-TOTAL-TO-PAY", QString::number(totalSum, 'd',2)+"zł");
         //            s.replace("KEYWORD-TOTAL-TO-PAY-IN-WORDS");
         s.replace("KEYWORD-PAYMENT-METHOD",paymentMethod);
         s.replace("KEYWORD-PAYMENT-DATE", paymentDeadline.toString(inputDateFormat));

@@ -3,14 +3,14 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 
 Window{
-    id:root
+    id:rootWindow
     height: 700
     width: 1000
     minimumHeight: 300
     minimumWidth: 600
     visible:true
     color: "lightgrey"
-    title: "Zielony Kram"
+    title: "Krzaczex"
     property bool isHiding: false
 
     //saving data when the window is closing (to correct)
@@ -59,6 +59,16 @@ Window{
         }
         BarButton{
             id: bb4
+            y: parent.height/6 + ( bb1.height + 10)*3
+            text: "Rejestr"
+            __textBold: menuBar.__focusedElem == text
+            onClicked:{
+                 menuBar.__focusedElem = text
+                load1.source = "RegisterScreen.qml"
+            }
+        }
+        BarButton{
+            id: bb5
             y: (parent.height - height) - parent.height*0.2
             text: "Opcje"
             __textBold: menuBar.__focusedElem == text

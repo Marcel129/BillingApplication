@@ -11,6 +11,7 @@ SOURCES += \
         invoicebase.cpp \
         invoicerecord.cpp \
         invoicetemplate.cpp \
+        invreclistmodel.cpp \
         main.cpp \
         my_classs.cpp \
         products.cpp
@@ -45,5 +46,6 @@ HEADERS += \
     invoicebase.h \
     invoicerecord.h \
     invoicetemplate.h \
+    invreclistmodel.h \
     my_classs.h \
     products.h

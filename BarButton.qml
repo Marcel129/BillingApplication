@@ -12,15 +12,15 @@ Item{
     signal clicked
     Rectangle{
         id: rec1
-        color: "green"
-        border.color: "darkgreen"
+        color: "#5865F2"
+        border.color: "#5865F2"
         border.width: 2
         anchors{
             fill:parent
         }
         Text {
             id: tx1
-            color: "#ebed0e"
+            color:"white"
             font.pixelSize: 25
             anchors{
                 centerIn: parent
@@ -30,7 +30,7 @@ Item{
             x: parent.width - width
             verticalAlignment: Text.AlignVCenter
             font.wordSpacing: 1
-            font.family: "Times New Roman"
+            font.family: "Raleway"
             //        font.bold: ma_bb.containsMouse
         }
 

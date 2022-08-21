@@ -1,7 +1,10 @@
-import QtQuick 2.2
-import QtQuick.Controls 2.0
+import QtQuick 2.7
+import QtQuick.Controls 2.2
 import QtQuick.Window 2.12
 import QtQuick.Layouts 1.3
+import QtQuick.Controls.Styles 1.4
+
+import InvRecords 1.0
 
 Item {
     id:rootItem
@@ -31,25 +34,25 @@ Item {
             spacing: __spacing
             ChooseField{
                 id:seller
-                caption: "Sprzedawca:"
+                caption: "Sprzedawca"
                 width:    mainInvData/2
                 __model: myDatabase.getSellersNames()
             }
             ChooseField{
                 id:buyer
-                caption: "Nabywca:"
+                caption: "Nabywca"
                 width:    mainInvData/2
                 __model: myDatabase.getCustomersNames()
             }
             ChooseField{
                 id:reciper
-                caption: "Odbiorca:"
+                caption: "Odbiorca"
                 width:    mainInvData/2
                 __model:myDatabase.getRecipersNames(buyer.__currentText)
             }
             ChooseField{
                 id:payment_method
-                caption: "Sposób płatności:"
+                caption: "Sposób płatności"
                 width:    mainInvData/2
                 __model: myDatabase.getPaymentMethods()
             }
@@ -68,12 +71,12 @@ Item {
             spacing: __spacing
             LineEdit{
                 id: place_of_billing
-                caption: "Miejsce wystawienia rachunku:"
+                caption: "Miejsce wystawienia rachunku"
                 text: myInvoice.getBillingPalce()
             }
             LineEdit{
                 id: sales_date
-                caption: "Data sprzedaży:"
+                caption: "Data sprzedaży"
                 text: myInvoice.getSellingDate_String()
             }
             Row{
@@ -111,8 +114,9 @@ Item {
             id: addButton
             text: "Dodaj"
             font.pixelSize: 20
+            width: 80
             height: plantName.height
-            font.family: "Times New Roman"
+            font.family: "Raleway"
             anchors{
                 right: addPlantRoot.right
                 top: addPlantRoot.top
@@ -120,13 +124,31 @@ Item {
             }
             onClicked: {
                 myInvoice.addRecord(plantName.__currentText,
+
                                     plantAmmount.text,
                                     plantPrice.text,
                                     plantRabat.text)
                 plantAmmount.text = ""
                 plantPrice.text = ""
-                plantRabat.text = ""
+                plantRabat.text = "0"
+                lv.__sumToPay = myInvoice.getTotalToPay_String()
             }
+
+            background: Rectangle{
+                anchors.fill: parent
+                color: "#5865F2"
+                border.color: "#5865F2"
+                radius: 4
+            }
+
+            contentItem: Text {
+                    text: addButton.text
+                    font: addButton.font
+                    anchors.fill: parent
+                    color: "white"
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
         }
 
         LineEdit{
@@ -186,48 +208,34 @@ Item {
         text: "Usuń"
         font.pixelSize: 20
         height: plantPrice.height
-        font.family: "Times New Roman"
+        width: addButton.width
+        font.family: "Raleway"
         anchors{
             right: rootItem.right
             top: lv.top
             margins: __generalMargins
             topMargin: 0
         }
+        onClicked: {
+            if(lv.currentIndex>=0)   myInvoice.removeInvRecordAt(lv.currentIndex)
+            lv.__sumToPay = myInvoice.getTotalToPay_String()
+        }
+        background: Rectangle{
+            anchors.fill: parent
+            color: "#5865F2"
+            border.color: "#5865F2"
+            radius: 4
+        }
+
+        contentItem: Text {
+                text: removePositionButton.text
+                font: removePositionButton.font
+                anchors.fill: parent
+                color: "white"
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
     }
-
-    ListModel {
-        id: mListModel
-        ListElement {
-            lp:"1"
-            name: "Berberys"
-            price: "146.3"
-            ammount: "15"
-            rabat: "20"
-        }
-        ListElement {
-            lp:"2"
-            name: "Thuja"
-            price: "1.3"
-            ammount: "15"
-            rabat: "20"
-        }
-        ListElement {
-            lp:"3"
-            name: "Irga"
-            price: "1.3"
-            ammount: "15"
-            rabat: "20"
-        }
-        ListElement {
-            lp:"4"
-            name: "Jałowiec"
-            price: "1.3"
-            ammount: "15"
-            rabat: "20"
-        }
-    }
-
-
 
     Component{
         id: lvElem
@@ -271,13 +279,13 @@ Item {
                 anchors{
                     top: elemRootRec.top
                     left: lpElem.right
-                    right: priceElem.left
+                    right: ammountElem.left
                 }
                 background: InvElem_bck{}
             }
             TextField{
-                id:priceElem
-                text: model.price
+                id:ammountElem
+                text: model.ammount
                 font.pixelSize: fontSize
                 font.bold: elemRootRec.__fontBold
                 color: __fontColor
@@ -286,13 +294,13 @@ Item {
                 width: 100
                 anchors{
                     top: elemRootRec.top
-                    right: ammountElem.left
+                    right: priceElem.left
                 }
                 background: InvElem_bck{}
             }
             TextField{
-                id:ammountElem
-                text: model.ammount
+                id:priceElem
+                text: model.price
                 font.pixelSize: fontSize
                 font.bold: elemRootRec.__fontBold
                 color: __fontColor
@@ -338,8 +346,8 @@ Item {
             readonly property ListView delegLv: ListView.view
             readonly property int fontSize: 15
             readonly property bool __fontBold: true
-            readonly property string __font: "Times New Roman"
-            readonly property string __fontColor: "black"
+            readonly property string __font: "Raleway"
+            readonly property string __fontColor: "white"
 
             anchors{
                 right: parent.right
@@ -348,8 +356,9 @@ Item {
             implicitHeight: 30
             TextField{
                 id:lpElem
-                text: "Lp"
+                text: "Lp."
                 font.bold: elemRootRec.__fontBold
+                horizontalAlignment:  "AlignHCenter"
                 color: __fontColor
                 font.family: __font
                 height: elemRootRec.height
@@ -369,27 +378,13 @@ Item {
                 text: "Nazwa"
                 height: elemRootRec.height
                 color: __fontColor
+                horizontalAlignment:  "AlignHCenter"
                 font.bold: elemRootRec.__fontBold
                 font.pixelSize: fontSize
                 font.family: __font
                 anchors{
                     top: elemRootRec.top
                     left: lpElem.right
-                    right: priceElem.left
-                }
-                background: InvHeaderElem_bck{}
-            }
-            TextField{
-                id:priceElem
-                text: "Cena [zł]"
-                font.pixelSize: fontSize
-                color: __fontColor
-                height: elemRootRec.height
-                font.bold: elemRootRec.__fontBold
-                font.family: __font
-                width: 100
-                anchors{
-                    top: elemRootRec.top
                     right: ammountElem.left
                 }
                 background: InvHeaderElem_bck{}
@@ -398,6 +393,23 @@ Item {
                 id:ammountElem
                 text: "Ilość [szt.]"
                 font.pixelSize: fontSize
+                color: __fontColor
+                height: elemRootRec.height
+                horizontalAlignment:  "AlignHCenter"
+                font.bold: elemRootRec.__fontBold
+                font.family: __font
+                width: 100
+                anchors{
+                    top: elemRootRec.top
+                    right: priceElem.left
+                }
+                background: InvHeaderElem_bck{}
+            }
+            TextField{
+                id:priceElem
+                text: "Cena [zł]"
+                font.pixelSize: fontSize
+                horizontalAlignment:  "AlignHCenter"
                 color: __fontColor
                 height: elemRootRec.height
                 font.bold: elemRootRec.__fontBold
@@ -414,6 +426,7 @@ Item {
                 text: "Rabat [%]"
                 color: __fontColor
                 font.pixelSize: fontSize
+                horizontalAlignment:  "AlignHCenter"
                 font.family: __font
                 font.bold: elemRootRec.__fontBold
                 height: elemRootRec.height
@@ -433,7 +446,9 @@ Item {
         }
     }
 
+
     ListView{
+        property string __sumToPay: myInvoice.getTotalToPay_String()
         id: lv
         highlightMoveDuration: 0
         anchors{
@@ -444,13 +459,18 @@ Item {
             margins: __generalMargins
             topMargin: 25
         }
-        model: mListModel
+        model: InvRecListModel {
+            mInvoice: myInvoice
+        }
         delegate:lvElem
         focus: true
         clip: true
 
         header:  lvHeaderElem
-        footer: InvFooter{}
+        footer: InvFooter{
+            id: invFoot
+            __sum: lv.__sumToPay
+        }
 
         highlight: Rectangle{
             z:3
@@ -459,7 +479,7 @@ Item {
                 right: parent.right
                 left: parent.left
             }
-            color: "brown"
+            color: "#5865F2"
         }
     }
 
@@ -472,8 +492,8 @@ Item {
         }
         color: "black"
         font.pixelSize: 15
-        font.family: "Times New Roman"
-        text:"Pozycje na rachunku:"
+        font.family: "Raleway"
+        text:"Pozycje na rachunku"
     }
 
     Button{
@@ -481,7 +501,7 @@ Item {
         text: "Utwórz"
         font.pixelSize: 20
         height: plantPrice.height
-        font.family: "Times New Roman"
+        font.family: "Raleway"
         anchors{
             right: rootItem.right
             bottom: rootItem.bottom
@@ -499,5 +519,20 @@ Item {
             myInvoice.createInvoice()
             invoice_number.text = myInvoice.getInvoiceNumber_slot()
         }
+        background: Rectangle{
+            anchors.fill: parent
+            color: "#5865F2"
+            border.color: "#5865F2"
+            radius: 4
+        }
+
+        contentItem: Text {
+                text: generateInvoiceButton.text
+                font: addButton.font
+                anchors.fill: parent
+                color: "white"
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
     }
 }

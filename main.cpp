@@ -9,6 +9,7 @@
 #include <my_classs.h>
 #include <invoice.h>
 #include <database.h>
+#include <invreclistmodel.h>
 
 int main(int argc, char *argv[])
 {
@@ -17,6 +18,9 @@ int main(int argc, char *argv[])
 #endif
     QGuiApplication app(argc, argv);
 
+    qmlRegisterType<InvRecListModel>("InvRecords", 1, 0, "InvRecListModel");
+//    qmlRegisterUncreatableType<InvRecListModel>("InvRecords", 1, 0, "InvRecListModel",
+//                            QStringLiteral("This type should not be created in qml"));
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();

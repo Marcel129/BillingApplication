@@ -12,6 +12,7 @@ invoice::invoice(QSharedPointer<database> d, QObject *parent)
         paymentDeadline = QDate::currentDate();
         //        invoiceNumber = defaultInvoiceNumber;
         setNewInvoiceNumber();
+//        addRecord("THUJA", "22","12", "6");
     }
     else{
         is_inited = false;
@@ -29,6 +30,8 @@ void invoice::addRecord(const InvoiceRecord & record){
 
 bool invoice::addRecord(const QString n, const QString q, const QString p,  const QString r)
 {
+    emit preInvAddRecord();
+
     bool isConverted = false;
     InvoiceRecord rec(n,
                       q.toUInt(&isConverted),
@@ -36,8 +39,11 @@ bool invoice::addRecord(const QString n, const QString q, const QString p,  cons
                       r.toDouble(&isConverted));
     if(isConverted){
         records.push_back(rec);
+        emit postInvAddRecord();
         return true;
     }
+
+    emit postInvAddRecord();
     return false;
 }
 
@@ -84,6 +90,19 @@ void invoice::setInvoiceNumber_slot(const QString &nin)
 const QString invoice::getInvoiceNumber_slot() const
 {
     return invoiceNumber;
+}
+
+bool invoice::removeInvRecordAt(int position)
+{
+    emit preInvRemoveRecord(position);
+
+    if(position >=0 && position < records.size()){
+        records.erase(records.begin()+position );
+        emit postInvRemoveRecord();
+        return true;
+    }
+    emit postInvRemoveRecord();
+    return false;
 }
 
 void invoice::clearData()
@@ -235,7 +254,8 @@ void invoice::createInvoice(){
                 billingDate,
                 saleDate,
                 paymentDeadline,
-                invoiceNumber);
+                invoiceNumber,
+                getTotalToPay());
     createLatexInvoice();
     createPDFInvoice();
     //    saveInvoiceInRegister();

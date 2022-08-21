@@ -61,7 +61,8 @@ public:
             QDate billingDate,
             QDate saleDate,
             QDate paymentDeadline,
-            QString invoiceNumber);
+            QString invoiceNumber,
+            double totalSum);
 
     void refresh();
 
