@@ -120,9 +120,11 @@ void database::addInvoiceToRegister(const invoiceBase &ai){
 database::database(QObject *parent)
     : QObject{parent}
 {
+
+    paymentMethods = invoicePaymentMethods;
     isLoaded =  loadCustomers() &&
             loadSellers() &&
-            loadPaymentMethods() &&
+            //loadPaymentMethods() &&
             loadProducts() &&
             loadInvoicesRegister();
 }

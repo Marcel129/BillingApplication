@@ -3,20 +3,14 @@
 invoice::invoice(QSharedPointer<database> d, QObject *parent)
     : QObject{parent}
 {
-    if(!is_inited){
-        is_inited = this->invoiceTemplate.load();
-        mDatabase = d;
-        saleDate = QDate::currentDate();
-        billingDate = QDate::currentDate();
-        billingPalce = defaultBillingPlace;
-        paymentDeadline = QDate::currentDate();
-        //        invoiceNumber = defaultInvoiceNumber;
-        setNewInvoiceNumber();
-//        addRecord("THUJA", "22","12", "6");
-    }
-    else{
-        is_inited = false;
-    }
+    is_inited = this->invoiceTemplate.load();
+    mDatabase = d;
+    saleDate = QDate::currentDate();
+    billingDate = QDate::currentDate();
+    billingPalce = defaultBillingPlace;
+    paymentDeadline = QDate::currentDate();
+    setNewInvoiceNumber();
+
 }
 
 bool invoice::isInited() const
@@ -189,9 +183,9 @@ void invoice::createLatexInvoice(){
     removePolishDiacritics(tmpBuy);
     invoiceFileName = "Rachunek_Nr_" + tmpNum.replace("/",".") + "_" + tmpBuy.replace(" ", "_");
 
-    QFile mFile(FVpath  + invoiceFileName +".tex");
+    QFile mFile(invoicesPath  + invoiceFileName +".tex");
     if(!mFile.open(QIODevice::ReadWrite)){
-        qDebug()<< "Unable to create FV file";
+        qDebug()<< "Unable to create invoice file";
         exit(1);
     }
 
@@ -235,16 +229,28 @@ void invoice::createPDFInvoice(){
         invoiceFileName + ".aux"
     };
 
-    tmp = "pdflatex -quiet -output-directory=" + FVpath +" " + FVpath + invoiceFileName+".tex";
+    tmp = "pdflatex -quiet -output-directory=" + invoicesPath +" " + invoicesPath + invoiceFileName+".tex";
     system(tmp.toStdString().c_str());
 
-    for(const QString & a: filesToDelete){
-        tmp = "del " +FVpath + a;
-        system(tmp.toStdString().c_str());
-    }
+//    for(const QString & a: filesToDelete){
+//        tmp = "del " +invoicesPath + a;
+//        system(tmp.toStdString().c_str());
+//    }
 }
 
 void invoice::createInvoice(){
+
+    if(invoicePaymentMethods.size()>0 && invoicePaymentMethods.size() <5){
+        if(paymentMethod == invoicePaymentMethods[0]) paymentDeadline = saleDate.addDays(7);
+        else if(paymentMethod == invoicePaymentMethods[1]) paymentDeadline = saleDate.addDays(14);
+        else if(paymentMethod == invoicePaymentMethods[2]) paymentDeadline = saleDate.addDays(21);
+        else if(paymentMethod == invoicePaymentMethods[3]) paymentDeadline = saleDate;
+    }
+    else {
+        qDebug()<< "Unrecognized payment method";
+        //on error set creepy date
+        paymentDeadline.setDate(1410,7,10);
+    }
     invoiceTemplate.insertValuesIntoKeywords(
                 Seller,
                 buyer,
@@ -258,7 +264,6 @@ void invoice::createInvoice(){
                 getTotalToPay());
     createLatexInvoice();
     createPDFInvoice();
-    //    saveInvoiceInRegister();
     mDatabase->addInvoiceToRegister(*this);
     clearData();
 

@@ -49,7 +49,7 @@ public:
     const QString &getInvoiceNumber() const;
     void setInvoiceNumber(const QString &newInvoiceNumber);
 
-    bool saveInvoiceInRegister() const;
+//    bool saveInvoiceInRegister() const;
 };
 
 

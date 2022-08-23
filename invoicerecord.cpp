@@ -105,12 +105,12 @@ InvoiceRecord::InvoiceRecord(const QStringList & l)
 
 QTextStream& operator<<(QTextStream& os, const InvoiceRecord& rec){
     os << rec.getProductName() << FVTableElemSeparator_DefValue <<
-          rec.getRabat()<< "\\% " << FVTableElemSeparator_DefValue <<
+          QString::number(rec.getRabat(),'d',1)<< "\\% " << FVTableElemSeparator_DefValue <<
           rec.getPKWiU()<< FVTableElemSeparator_DefValue  <<
           rec.getQuantity()<< FVTableElemSeparator_DefValue <<
           rec.getUnit()<< FVTableElemSeparator_DefValue <<
-          rec.getPrice() << FVTableElemSeparator_DefValue <<
-          rec.getTotalValue() << FVTable_EOL_DefValue ;
+          QString::number(rec.getPrice(),'d',2) << FVTableElemSeparator_DefValue <<
+          QString::number(rec.getTotalValue(),'d',2) << FVTable_EOL_DefValue ;
     return os;
 }
 

@@ -19,8 +19,6 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     qmlRegisterType<InvRecListModel>("InvRecords", 1, 0, "InvRecListModel");
-//    qmlRegisterUncreatableType<InvRecListModel>("InvRecords", 1, 0, "InvRecListModel",
-//                            QStringLiteral("This type should not be created in qml"));
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
@@ -31,6 +29,15 @@ int main(int argc, char *argv[])
             break;
         }
     }
+
+    qDebug()<<"143"<<numberInWords_polish(143.14);
+    qDebug()<<"9"<<numberInWords_polish(9);
+    qDebug()<<"43"<<numberInWords_polish(43);
+    qDebug()<<"100"<<numberInWords_polish(100);
+    qDebug()<<"57"<<numberInWords_polish(57);
+    qDebug()<<"300"<<numberInWords_polish(300);
+    qDebug()<<"345"<<numberInWords_polish(345);
+    qDebug()<<"14"<<numberInWords_polish(14);
 
     QSharedPointer<database> db(new database);
     invoice myInvoice(db);

@@ -93,8 +93,8 @@ void InvoiceTemplate::insertValuesIntoKeywords(
         s.replace("KEYWORD-RECIPER-ADRESS-1",recip.getAdress());
         s.replace("KEYWORD-RECIPER-ADRESS-2", recip.getPostal_code() +" "+ recip.getTown());
         s.replace("KEYWORD-INVOICE-NUMBER",invoiceNumber);
-        s.replace("KEYWORD-TOTAL-TO-PAY", QString::number(totalSum, 'd',2)+"zł");
-        //            s.replace("KEYWORD-TOTAL-TO-PAY-IN-WORDS");
+        s.replace("KEYWORD-TOTAL-TO-PAY-IN-WORDS", numberInWords_polish(totalSum));
+        s.replace("KEYWORD-TOTAL-TO-PAY", QString::number(totalSum, 'd',2)+" zł");
         s.replace("KEYWORD-PAYMENT-METHOD",paymentMethod);
         s.replace("KEYWORD-PAYMENT-DATE", paymentDeadline.toString(inputDateFormat));
         s.replace("KEYWORD-SELLER-ACCOUNT-NUMBER",Seller.getAccountNumber());

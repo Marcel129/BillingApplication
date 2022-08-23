@@ -155,6 +155,7 @@ Item {
             id:plantRabat
             caption: "Rabat [%]"
             width: 70
+            text: "0"
             anchors{
                 top: addPlantRoot.top
                 right: addButton.left

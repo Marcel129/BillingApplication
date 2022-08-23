@@ -143,64 +143,64 @@ void oldInvoice::addRecord(const InvoiceRecord &r){
     records.push_back(r);
 }
 
-bool invoiceBase::saveInvoiceInRegister() const
-{
-    QFile mfile(InvoicesRegisterPath);
+//bool invoiceBase::saveInvoiceInRegister() const
+//{
+//    QFile mfile(InvoicesRegisterPath);
 
-    if (!mfile.open(QIODevice::Append))
-    {
-        qDebug() << "Unable to open invoices register";
-        return false;
-    }
+//    if (!mfile.open(QIODevice::Append))
+//    {
+//        qDebug() << "Unable to open invoices register";
+//        return false;
+//    }
 
-    QTextStream outStream(&mfile);
+//    QTextStream outStream(&mfile);
 
-    outStream << saleDate.toString(inputDateFormat) <<"\n"
-              << billingDate.toString(inputDateFormat)<<"\n"
-              <<QDate::currentDate().toString(inputDateFormat)<<"\n";
+//    outStream << saleDate.toString(inputDateFormat) <<"\n"
+//              << billingDate.toString(inputDateFormat)<<"\n"
+//              <<QDate::currentDate().toString(inputDateFormat)<<"\n";
 
-    outStream<<Seller.getBussinessName()<<CSVSplitTag
-            <<Seller.getName()<<CSVSplitTag
-           <<Seller.getAdress()<<CSVSplitTag
-          <<Seller.getPostal_code()<<CSVSplitTag
-         <<Seller.getTown()<<CSVSplitTag
-        <<Seller.getNIP()<<CSVSplitTag
-       <<Seller.getPhoneNumber()<<CSVSplitTag
-      <<Seller.getAccountNumber()<<CSVSplitTag
-     <<Seller.getBankName()<<CSVSplitTag
-    <<Seller.getProducerNumber()<<CSVSplitTag<<"\n";
+//    outStream<<Seller.getBussinessName()<<CSVSplitTag
+//            <<Seller.getName()<<CSVSplitTag
+//           <<Seller.getAdress()<<CSVSplitTag
+//          <<Seller.getPostal_code()<<CSVSplitTag
+//         <<Seller.getTown()<<CSVSplitTag
+//        <<Seller.getNIP()<<CSVSplitTag
+//       <<Seller.getPhoneNumber()<<CSVSplitTag
+//      <<Seller.getAccountNumber()<<CSVSplitTag
+//     <<Seller.getBankName()<<CSVSplitTag
+//    <<Seller.getProducerNumber()<<CSVSplitTag<<"\n";
 
-    outStream<<buyer.getName()<<CSVSplitTag
-            <<buyer.getAdress()<<CSVSplitTag
-           <<buyer.getPostal_code()<<CSVSplitTag
-          <<buyer.getTown()<<CSVSplitTag
-         <<buyer.getNIP()<<CSVSplitTag<<"\n";
+//    outStream<<buyer.getName()<<CSVSplitTag
+//            <<buyer.getAdress()<<CSVSplitTag
+//           <<buyer.getPostal_code()<<CSVSplitTag
+//          <<buyer.getTown()<<CSVSplitTag
+//         <<buyer.getNIP()<<CSVSplitTag<<"\n";
 
-    if(recip.getName()!=""){
-        outStream<<RecipertTag<<CSVSplitTag
-                <<recip.getName()<<CSVSplitTag
-               <<recip.getAdress()<<CSVSplitTag
-              <<recip.getPostal_code()<<CSVSplitTag
-             <<recip.getTown()<<CSVSplitTag<<"\n";
-    }
+//    if(recip.getName()!=""){
+//        outStream<<RecipertTag<<CSVSplitTag
+//                <<recip.getName()<<CSVSplitTag
+//               <<recip.getAdress()<<CSVSplitTag
+//              <<recip.getPostal_code()<<CSVSplitTag
+//             <<recip.getTown()<<CSVSplitTag<<"\n";
+//    }
 
-    outStream<<paymentMethod<<CSVSplitTag<<"\n";
+//    outStream<<paymentMethod<<CSVSplitTag<<"\n";
 
-    for(const auto & r: records){
-        outStream<<ProductTag <<CSVSplitTag<< r.getProductName() << CSVSplitTag
-                <<r.getRabat()<< CSVSplitTag
-               <<r.getPKWiU()<< CSVSplitTag
-              <<r.getQuantity()<< CSVSplitTag
-             <<r.getUnit()<< CSVSplitTag
-            <<r.getPrice() << CSVSplitTag
-           <<r.getTotalValue() << CSVSplitTag<<"\n";
-    }
+//    for(const auto & r: records){
+//        outStream<<ProductTag <<CSVSplitTag<< r.getProductName() << CSVSplitTag
+//                <<r.getRabat()<< CSVSplitTag
+//               <<r.getPKWiU()<< CSVSplitTag
+//              <<r.getQuantity()<< CSVSplitTag
+//             <<r.getUnit()<< CSVSplitTag
+//            <<r.getPrice() << CSVSplitTag
+//           <<r.getTotalValue() << CSVSplitTag<<"\n";
+//    }
 
-    outStream<<paymentDeadline.toString(inputDateFormat)<<"\n";
-    outStream<<"NIE"<<"\n";
-    outStream<<invoiceNumber<<"\n";
+//    outStream<<paymentDeadline.toString(inputDateFormat)<<"\n";
+//    outStream<<"NIE"<<"\n";
+//    outStream<<invoiceNumber<<"\n";
 
-    mfile.close();
+//    mfile.close();
 
-    return true;
-}
+//    return true;
+//}
