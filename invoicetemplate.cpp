@@ -77,7 +77,7 @@ void InvoiceTemplate::insertValuesIntoKeywords(
     for(QString & s: parts){
         s.replace("KEYWORD-SELLER-BUSSINES-FULL-NAME", Seller.getBussinessName());
         s.replace("KEYWORD-SELLER-ADRESS-1",Seller.getAdress());
-        s.replace("KEYWORD-SELLER-ADRESS-2", Seller.getPostal_code());
+        s.replace("KEYWORD-SELLER-ADRESS-2", Seller.getPostal_code() + " "+Seller.getTown());
         s.replace("KEYWORD-SELLER-BUSSINES-TOWN", Seller.getTown());
         s.replace("KEYWORD-SELLER-NAME", Seller.getName());
         s.replace("KEYWORD-PRODUCER-NUMBER", Seller.getProducerNumber());

@@ -8,6 +8,17 @@
 #include <config.h>
 
 const int productsElementsCount = 5;
+const QStringList productsTypes = {
+    "DRZEWA I KRZEWY LIŚCIASTE",
+    "DRZEWA I KRZEWY IGLASTE",
+    "BYLINY"
+};
+
+const QStringList productsTypesShorts = {
+    "DIKL",
+    "DIKI",
+    "BYL"
+};
 
 class product
 {

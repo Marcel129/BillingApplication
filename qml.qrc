@@ -16,5 +16,6 @@
         <file>InvElem_bck.qml</file>
         <file>InvFooter.qml</file>
         <file>RegisterScreen.qml</file>
+        <file>MButton.qml</file>
     </qresource>
 </RCC>

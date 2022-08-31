@@ -1,4 +1,5 @@
 QT += quick
+QT += widgets
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -13,7 +14,7 @@ SOURCES += \
         invoicetemplate.cpp \
         invreclistmodel.cpp \
         main.cpp \
-        my_classs.cpp \
+        productreclistmodel.cpp \
         products.cpp
 
 RESOURCES += qml.qrc
@@ -47,5 +48,5 @@ HEADERS += \
     invoicerecord.h \
     invoicetemplate.h \
     invreclistmodel.h \
-    my_classs.h \
+    productreclistmodel.h \
     products.h

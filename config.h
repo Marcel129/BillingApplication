@@ -4,11 +4,17 @@
 #include <QString>
 #include <QStringList>
 
+#define DEV_MODE
+
+#ifdef DEV_MODE
 const QString resourcesPath("D:\\SzkolkaRoslinOpatow\\Application_deployment\\External_resources\\");
 const QString invoicesPath("D:\\SzkolkaRoslinOpatow\\Aplikacja\\");
+#endif
 
-//const QString resourcesPath("D:\\Aplikacja_szkolka\\External_resources\\");
-//const QString invoicesPath("D:\\Szkolka_rachunki\\");
+#ifndef DEV_MODE
+const QString resourcesPath("D:\\Aplikacja_szkolka\\External_resources\\");
+const QString invoicesPath("D:\\Szkolka_rachunki\\");
+#endif
 
 //database files tags
 const char CommentTag = '#';

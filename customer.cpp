@@ -71,8 +71,8 @@ customer::customer(const QStringList &c){
     if(c.size() >=customerElementsCount){
         name = c[0];
         adress = c[1];
-        town = c[2];
-        postal_code = c[3];
+        town = c[3];
+        postal_code = c[2];
         NIP = c[4];
     }
     else{
@@ -124,8 +124,8 @@ reciper::reciper(const QStringList &r){
     if(r.size() >= reciperElementsCount){
         name = r[0];
         adress = r[1];
-        town = r[2];
-        postal_code = r[3];
+        postal_code = r[2];
+        town = r[3];
     }
     else{
         qDebug()<<"Failed to create reciper";
@@ -164,8 +164,8 @@ seller::seller(const QStringList &r){
             bussinessName=r[0];
             name =r[1];
             adress=r[2];
-            town=r[3];
-            postal_code=r[4];
+            postal_code=r[3];
+            town=r[4];
             NIP=r[5];
             phoneNumber=r[6];
             accountNumber=r[7];

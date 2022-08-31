@@ -1,5 +1,5 @@
 #include "invreclistmodel.h"
-#include<invoice.h>
+#include <invoice.h>
 
 InvRecListModel::InvRecListModel(QObject *parent)
     : QAbstractListModel(parent), mInvoice(nullptr)
@@ -23,7 +23,7 @@ QVariant InvRecListModel::data(const QModelIndex &index, int role) const
 
     const InvoiceRecord currRec = mInvoice->getRecords().at(index.row());
     switch(role){
-    case LpRole: return QVariant(QStringLiteral("nr"));
+    case LpRole: return QVariant(QString::number(index.row()));
     case NameRole: return QVariant(currRec.getProductName());
     case AmmountRole: return QVariant(QString::number(currRec.getQuantity(), 'd', 0));
     case PriceRole: return QVariant(QString::number(currRec.getPrice(),'d', 2));

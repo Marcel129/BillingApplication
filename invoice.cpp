@@ -232,10 +232,10 @@ void invoice::createPDFInvoice(){
     tmp = "pdflatex -quiet -output-directory=" + invoicesPath +" " + invoicesPath + invoiceFileName+".tex";
     system(tmp.toStdString().c_str());
 
-//    for(const QString & a: filesToDelete){
-//        tmp = "del " +invoicesPath + a;
-//        system(tmp.toStdString().c_str());
-//    }
+    for(const QString & a: filesToDelete){
+        tmp = "del " +invoicesPath + a;
+        system(tmp.toStdString().c_str());
+    }
 }
 
 void invoice::createInvoice(){

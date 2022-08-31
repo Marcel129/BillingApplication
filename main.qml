@@ -10,13 +10,16 @@ Window{
     minimumWidth: 600
     visible:true
     color: "lightgrey"
-    title: "Krzaczex"
+    title: "Zielony Kram"
     property bool isHiding: false
 
     //saving data when the window is closing (to correct)
     onVisibleChanged: {
         if(isHiding){
             myDatabase.saveInvoicesRegister()
+            myDatabase.saveCustomers()
+            myDatabase.saveSellers()
+            myDatabase.saveProducts()
         }
         isHiding = true
     }

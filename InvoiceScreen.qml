@@ -110,13 +110,11 @@ Item {
         }
         height: plantName.height
 
-        Button{
+        MButton{
             id: addButton
             text: "Dodaj"
-            font.pixelSize: 20
             width: 80
             height: plantName.height
-            font.family: "Raleway"
             anchors{
                 right: addPlantRoot.right
                 top: addPlantRoot.top
@@ -133,24 +131,7 @@ Item {
                 plantRabat.text = "0"
                 lv.__sumToPay = myInvoice.getTotalToPay_String()
             }
-
-            background: Rectangle{
-                anchors.fill: parent
-                color: "#5865F2"
-                border.color: "#5865F2"
-                radius: 4
-            }
-
-            contentItem: Text {
-                    text: addButton.text
-                    font: addButton.font
-                    anchors.fill: parent
-                    color: "white"
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                }
         }
-
         LineEdit{
             id:plantRabat
             caption: "Rabat [%]"
@@ -190,27 +171,37 @@ Item {
 
         ChooseField{
             id:plantName
-            caption: "Nazwa"
-            __model: myDatabase.getProductsPolishNames()
+            caption: "Roślina"
+            __model: myDatabase.getProductsPolishNames(searchProduct.text)
             anchors{
                 top: addPlantRoot.top
-                left: addPlantRoot.left
+                left: searchProduct.right
                 right: plantAmmount.left
+                margins: __generalMargins
+                topMargin: 0
+            }
+        }
+
+        LineEdit{
+            id:searchProduct
+            caption: "Wyszukiwarka"
+            width: 250
+            anchors{
+                top: addPlantRoot.top
+                left: addPlantRoot.left.left
                 margins: __generalMargins
                 topMargin: 0
                 leftMargin: 0
             }
+            onTextChanged: plantName.__model =  myDatabase.getProductsPolishNames(searchProduct.text)
         }
-
     }
 
-    Button{
+    MButton{
         id: removePositionButton
         text: "Usuń"
-        font.pixelSize: 20
         height: plantPrice.height
         width: addButton.width
-        font.family: "Raleway"
         anchors{
             right: rootItem.right
             top: lv.top
@@ -221,21 +212,6 @@ Item {
             if(lv.currentIndex>=0)   myInvoice.removeInvRecordAt(lv.currentIndex)
             lv.__sumToPay = myInvoice.getTotalToPay_String()
         }
-        background: Rectangle{
-            anchors.fill: parent
-            color: "#5865F2"
-            border.color: "#5865F2"
-            radius: 4
-        }
-
-        contentItem: Text {
-                text: removePositionButton.text
-                font: removePositionButton.font
-                anchors.fill: parent
-                color: "white"
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-            }
     }
 
     Component{
@@ -497,12 +473,10 @@ Item {
         text:"Pozycje na rachunku"
     }
 
-    Button{
+    MButton{
         id: generateInvoiceButton
         text: "Utwórz"
-        font.pixelSize: 20
         height: plantPrice.height
-        font.family: "Raleway"
         anchors{
             right: rootItem.right
             bottom: rootItem.bottom
@@ -520,20 +494,5 @@ Item {
             myInvoice.createInvoice()
             invoice_number.text = myInvoice.getInvoiceNumber_slot()
         }
-        background: Rectangle{
-            anchors.fill: parent
-            color: "#5865F2"
-            border.color: "#5865F2"
-            radius: 4
-        }
-
-        contentItem: Text {
-                text: generateInvoiceButton.text
-                font: addButton.font
-                anchors.fill: parent
-                color: "white"
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-            }
     }
 }

@@ -6,10 +6,12 @@
 #include <QTranslator>
 #include <QObject>
 
-#include <my_classs.h>
+#include <QMessageBox>
+
 #include <invoice.h>
 #include <database.h>
 #include <invreclistmodel.h>
+#include <productreclistmodel.h>
 
 int main(int argc, char *argv[])
 {
@@ -19,6 +21,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     qmlRegisterType<InvRecListModel>("InvRecords", 1, 0, "InvRecListModel");
+    qmlRegisterType<ProductRecListModel>("ProductsList", 1, 0, "ProductRecListModel");
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
@@ -29,15 +32,6 @@ int main(int argc, char *argv[])
             break;
         }
     }
-
-    qDebug()<<"143"<<numberInWords_polish(143.14);
-    qDebug()<<"9"<<numberInWords_polish(9);
-    qDebug()<<"43"<<numberInWords_polish(43);
-    qDebug()<<"100"<<numberInWords_polish(100);
-    qDebug()<<"57"<<numberInWords_polish(57);
-    qDebug()<<"300"<<numberInWords_polish(300);
-    qDebug()<<"345"<<numberInWords_polish(345);
-    qDebug()<<"14"<<numberInWords_polish(14);
 
     QSharedPointer<database> db(new database);
     invoice myInvoice(db);

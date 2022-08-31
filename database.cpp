@@ -76,6 +76,184 @@ bool database::saveInvoicesRegister() const
     return true;
 }
 
+bool database::saveCustomers() const
+{
+    QFile mfile(CustomersDatabasePath);
+
+    if (!mfile.open(QIODevice::Truncate | QIODevice::WriteOnly))
+    {
+        qDebug() << "Unable to open customers register";
+        return false;
+    }
+
+    QTextStream outStream(&mfile);
+
+    outStream<<"#Wykrzyknikami oznaczeni są odbiorcy przypisani do nabywców bezpośrednio nad nimi"<<"\n"<<
+               "#Odbiorca;	adres;	miasto	;kod_pocztowy;	nip/kod pocztowy"<<"\n";
+
+    for(const auto & mBuyer:customers){
+        outStream<<mBuyer.getName()<<CSVSplitTag
+                <<mBuyer.getAdress()<<CSVSplitTag
+               <<mBuyer.getPostal_code()<<CSVSplitTag
+              <<mBuyer.getTown()<<CSVSplitTag
+             <<mBuyer.getNIP()<<CSVSplitTag<<"\n";
+        for(const auto & mRecip: mBuyer.getRecipers()){
+            outStream<<RecipertTag<<CSVSplitTag
+                    <<mRecip.getName()<<CSVSplitTag
+                   <<mRecip.getAdress()<<CSVSplitTag
+                  <<mRecip.getPostal_code()<<CSVSplitTag
+                 <<mRecip.getTown()<<CSVSplitTag
+                <<"\n";
+        }
+    }
+
+    mfile.close();
+
+    return true;
+}
+
+bool database::saveSellers() const
+{
+    QFile mfile(SellersDatabasePath);
+
+    if (!mfile.open(QIODevice::Truncate | QIODevice::WriteOnly))
+    {
+        qDebug() << "Unable to open sellers register";
+        return false;
+    }
+
+    QTextStream outStream(&mfile);
+
+    outStream<<"#NazwaWystawcaAdresMiastoKodpocztowyNIPTelefonNumerrachunkuBankNrproducent\n";
+
+    for(const auto & mSeller: sellers){
+        outStream<<mSeller.getBussinessName()<<CSVSplitTag
+                <<mSeller.getName()<<CSVSplitTag
+               <<mSeller.getAdress()<<CSVSplitTag
+              <<mSeller.getPostal_code()<<CSVSplitTag
+             <<mSeller.getTown()<<CSVSplitTag
+            <<mSeller.getNIP()<<CSVSplitTag
+           <<mSeller.getPhoneNumber()<<CSVSplitTag
+          <<mSeller.getAccountNumber()<<CSVSplitTag
+         <<mSeller.getBankName()<<CSVSplitTag
+        <<mSeller.getProducerNumber()<<CSVSplitTag<<"\n";
+    }
+
+    mfile.close();
+
+    return true;
+}
+
+bool database::saveProducts() const
+{
+    QFile mfile(ProductsDatabasePath);
+
+    if (!mfile.open(QIODevice::Truncate | QIODevice::WriteOnly))
+    {
+        qDebug() << "Unable to open products register";
+        return false;
+    }
+
+    QTextStream outStream(&mfile);
+
+    outStream<<"#Rodzaj;	nazwa łacińska;	nazwa polska;	gatunek;	numer ewidencyjny\n";
+
+    for(const auto & mProduct: products){
+        outStream<<mProduct.getType()<< CSVSplitTag
+                <<mProduct.getLatinName()<< CSVSplitTag
+               <<mProduct.getPolishName()<< CSVSplitTag
+              <<mProduct.getSpecies()<< CSVSplitTag
+             <<mProduct.getRegisterNumber()<< CSVSplitTag<<"\n";
+    }
+
+    mfile.close();
+
+    return true;
+}
+
+void database::addCustomer(const QString &n, const QString &a, const QString &t, const QString &pc, const QString &NIP)
+{
+    customer c;
+    c.setName(n);
+    c.setAdress(a);
+    c.setPostal_code(pc);
+    c.setTown(t);
+    c.setNIP(NIP);
+    customers.push_back(c);
+}
+
+void database::addReciper(const QString &cust, const QString &n, const QString &a, const QString &t, const QString &pc)
+{
+    reciper r;
+    r.setName(n);
+    r.setAdress(a);
+    r.setPostal_code(pc);
+    r.setTown(t);
+
+    for(auto & c: customers){
+        if(c.getName() == cust){
+            c.addReciper(r);
+            return;
+        }
+    }
+}
+
+const QStringList database::getProductsTypes() const
+{
+    return mProductsTypes;
+}
+
+const QStringList database::getProductsTypesShorts() const
+{
+    return mPoductsTypesShorts;
+}
+
+void database::addProduct(const QString &type,
+                          const QString &latinName,
+                          const QString &polishName,
+                          const QString &species,
+                          const QString &registerNumber)
+{
+    if(latinName == "" || polishName == ""|| species == ""){
+        QMessageBox msgBox;
+        msgBox.setText("The document has been modified.");
+        msgBox.exec();
+        return;
+    }
+
+    product p;
+    p.setType(type);
+    p.setLatinName(latinName);
+    p.setPolishName(polishName);
+    p.setSpecies(species);
+    if(registerNumber == ""){
+        QString s, nRegNum = "";
+        int biggest = 0, actuall = 0;
+
+        for(const auto & e: products){
+            if(e.getType() == type){
+                try{
+                    actuall = e.getRegisterNumber().split('/').last().toInt();
+                }
+                catch(...){
+                    qDebug()<<"Problem occurs during calculating new product's evidence number";
+                }
+                if(actuall > biggest) biggest = actuall;
+            }
+        }
+        if(type == productsTypes[0]) s = productsTypesShorts[0];
+        else if(type == productsTypes[1]) s = productsTypesShorts[1];
+        else if(type == productsTypes[2]) s = productsTypesShorts[2];
+        else{
+            qDebug()<<"Unknown product type";
+            s = "ERROR";
+        }
+        p.setRegisterNumber( s + "/" + QString::number(biggest));
+        qDebug()<<"New number is: " << p.getRegisterNumber();
+    }
+    products.push_back(p);
+}
+
 const QString database::getLatestInvoiceNumber(){
     if(invoicesRegister.empty()){
         return "";
@@ -113,13 +291,16 @@ void database::addInvoiceToRegister(const invoiceBase &ai){
     oi.setBillingDate(ai.getBillingDate());
     oi.setPaymentDeadline(ai.getPaymentDeadline());
     oi.setInvoiceNumber(ai.getInvoiceNumber());
-    invoicesRegister.push_back(oi);
 
+    invoicesRegister.push_back(oi);
 }
 
 database::database(QObject *parent)
     : QObject{parent}
 {
+    mProductsTypes = productsTypes;
+
+    mPoductsTypesShorts = productsTypesShorts;
 
     paymentMethods = invoicePaymentMethods;
     isLoaded =  loadCustomers() &&
@@ -127,6 +308,7 @@ database::database(QObject *parent)
             //loadPaymentMethods() &&
             loadProducts() &&
             loadInvoicesRegister();
+//                dupaLoad();
 }
 
 bool database::loadCustomers(){
@@ -236,6 +418,10 @@ bool database::loadProducts()
         }
 
     } while (!inStream.atEnd());
+
+    std::sort(products.begin(),products.end(), [](product p1, product p2){
+        return p1.getPolishName() < p2.getPolishName();
+    });
 
     qDebug()<< "Succesfully loaded products database";
     return true;
@@ -375,14 +561,13 @@ bool database::loadInvoicesRegister()
             break;
         }
         }
-
         if(inStream.atEnd()) counter = -1;
 
     }while(counter != -1);
 
-//    qDebug()<<"Succesfully loaded invoices register.";
-//    if(!invoicesRegister.empty())
-//    qDebug()<<"Invoices count: " << invoicesRegister.size();
+    //    qDebug()<<"Succesfully loaded invoices register.";
+    //    if(!invoicesRegister.empty())
+    //    qDebug()<<"Invoices count: " << invoicesRegister.size();
 
     mfile.close();
 
@@ -426,10 +611,8 @@ bool database::loadSellers()
 
         tmp_vec = tmp_text.split(CSVSplitTag);
 
-        if(tmp_vec.size() == sellerElementsCount){
-            seller s(tmp_vec)   ;
-            sellers.push_back(s);
-        }
+        seller s(tmp_vec)   ;
+        sellers.push_back(s);
 
     } while (!inStream.atEnd());
 
@@ -464,11 +647,14 @@ const QStringList database::getSellersNames() const{
     return s;
 }
 
-const QStringList database::getProductsPolishNames() const
+const QStringList database::getProductsPolishNames(const QString & filter) const
 {
     QStringList a;
     for(const auto & p: products){
-        a.push_back(p.getPolishName()+" "+p.getSpecies());
+        if(p.getPolishName().toLower().contains(filter.toLower()) ||
+                p.getSpecies().toLower().contains(filter.toLower())){
+            a.push_back(p.getPolishName()+" "+p.getSpecies());
+        }
     }
     return a;
 }
