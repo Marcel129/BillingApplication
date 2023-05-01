@@ -4,7 +4,7 @@
 #include <QString>
 #include <QStringList>
 
-#define DEV_MODE
+//#define DEV_MODE
 
 #ifdef DEV_MODE
 const QString resourcesPath("D:\\SzkolkaRoslinOpatow\\Application_deployment\\External_resources\\");

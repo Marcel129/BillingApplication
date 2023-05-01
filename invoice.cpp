@@ -54,7 +54,16 @@ void invoice::setNewInvoiceNumber(const QString &nin){
         }
         else{
             QStringList mList= newNumber.split("/");
-            if(mList[1] == m){
+
+            //incorrect invoice number
+            if(mList.size() < 3){
+                qDebug() << "Incorrect invoice number";
+                //set creepy number
+                invoiceNumber = "0/0/0";
+                return;
+            }
+
+            if(mList[2] == y){
                 int in = mList[0].toInt() +1;
                 QString d = QString::number(in);
                 invoiceNumber = d+"/" + m + "/"+y;
@@ -68,7 +77,6 @@ void invoice::setNewInvoiceNumber(const QString &nin){
     else{
         invoiceNumber = nin;
     }
-    qDebug()<<"numer faktury: "<<invoiceNumber;
 }
 
 const QString invoice::getNewInvoiceNumber() const

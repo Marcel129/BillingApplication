@@ -61,17 +61,17 @@ void ProductRecListModel::setmDatabase(database *newDatabse)
     mDatabase = newDatabse;
 
     if(mDatabase){
-        connect(mDatabase, &database::preInvAddRecord, this, [=](){
+        connect(mDatabase, &database::preAddProduct, this, [=](){
             const int  index = mDatabase->getProducts().size();
             beginInsertRows(QModelIndex(), index,index);
         });
-        connect(mDatabase, &database::postInvAddRecord, this, [=](){
+        connect(mDatabase, &database::postAddProduct, this, [=](){
             endInsertRows();
         });
-        connect(mDatabase, &database::preInvRemoveRecord, this, [=](int index){
+        connect(mDatabase, &database::preRemoveProduct, this, [=](int index){
             beginRemoveRows(QModelIndex(), index,index);
         });
-        connect(mDatabase, &database::postInvRemoveRecord, this, [=](){
+        connect(mDatabase, &database::postRemoveProduct, this, [=](){
             endRemoveRows();
         });
     }

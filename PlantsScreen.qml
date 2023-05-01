@@ -434,7 +434,9 @@ Item {
                 margins: __generalMargins
                 topMargin: 10
             }
-
+            onClicked: {
+                myDatabase.removeProductAt(lv.currentIndex)
+            }
         }
     }
 
