@@ -1,25 +1,26 @@
-#ifndef PRODUCTRECLISTMODEL_H
-#define PRODUCTRECLISTMODEL_H
+#ifndef REGISTERRECLISTMODEL_H
+#define REGISTERRECLISTMODEL_H
 
 #include <QAbstractListModel>
 #include "database.h"
+#include "config.h"
+
 class database;
 
-class ProductRecListModel : public QAbstractListModel
+class RegisterRecListModel: public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY(database *mDatabase READ getmDatabase WRITE setmDatabase)
 
 public:
-    explicit ProductRecListModel(QObject *parent = nullptr);
+    explicit RegisterRecListModel(QObject *parent = nullptr);
 
     enum{
         LpRole = Qt::UserRole,
-        species,
-        latinName,
-        polishName,
-        type,
-        evidenceNumber
+        invoiceNumber,
+        buyer,
+        peymantMethod,
+        date
     };
 
     // Basic functionality:
@@ -36,4 +37,4 @@ private:
     database * mDatabase;
 };
 
-#endif // PRODUCTRECLISTMODEL_H
+#endif // REGISTERRECLISTMODEL_H

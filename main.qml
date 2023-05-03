@@ -4,8 +4,8 @@ import QtQuick.Controls 2.12
 
 Window{
     id:rootWindow
-    height: 700
-    width: 1000
+    height: 1000
+    width: 1400
     minimumHeight: 300
     minimumWidth: 600
     visible:true

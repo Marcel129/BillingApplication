@@ -3,6 +3,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Window 2.12
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Styles 1.4
+import QtQuick.Dialogs 1.3
 
 import InvRecords 1.0
 
@@ -12,6 +13,7 @@ Item {
 
     readonly property int __spacing: 25
     readonly property int __generalMargins: 15
+
     Item{
         id:mainInvData
         height: 250
@@ -110,6 +112,24 @@ Item {
         }
         height: plantName.height
 
+        MessageDialog {
+            id: mmsgBoxOk
+            title: "Informacja"
+            text: "Poprawnie wygenerowano fakturę"
+            standardButtons: StandardButton.Ok
+            onAccepted: {
+                close()
+            }
+        }
+
+        MessageDialog {
+            id:mmsgBox
+            title: "Błąd"
+            icon: StandardIcon.Warning
+            text: "Uzupełnij brakujące pola"
+            standardButtons: StandardButton.Ok
+        }
+
         MButton{
             id: addButton
             text: "Dodaj"
@@ -121,15 +141,21 @@ Item {
                 leftMargin: __generalMargins
             }
             onClicked: {
-                myInvoice.addRecord(plantName.__currentText,
+                if( plantAmmount.text != "" && plantPrice.text != ""){
+                    myInvoice.addRecord(plantName.__currentText,
 
-                                    plantAmmount.text,
-                                    plantPrice.text,
-                                    plantRabat.text)
-                plantAmmount.text = ""
-                plantPrice.text = ""
-                plantRabat.text = "0"
-                lv.__sumToPay = myInvoice.getTotalToPay_String()
+                                        plantAmmount.text,
+                                        plantPrice.text,
+                                        plantRabat.text)
+                    plantAmmount.text = ""
+                    plantPrice.text = ""
+                    plantRabat.text = "0"
+                    lv.__sumToPay = myInvoice.getTotalToPay_String()
+                }
+                else{
+                    mmsgBox.open()
+                }
+
             }
         }
         LineEdit{
@@ -197,6 +223,21 @@ Item {
         }
     }
 
+    MessageDialog {
+        id: messageDialogRemove
+        title: "Ostrzeżenie"
+        text: "Czy na pewno chcesz usunąć pozycję?"
+        standardButtons: StandardButton.Yes | StandardButton.No
+        onYes: {
+            if(lv.currentIndex>=0)   myInvoice.removeInvRecordAt(lv.currentIndex)
+            lv.__sumToPay = myInvoice.getTotalToPay_String()
+            close()
+        }
+        onNo:{
+            close()
+        }
+    }
+
     MButton{
         id: removePositionButton
         text: "Usuń"
@@ -209,8 +250,7 @@ Item {
             topMargin: 0
         }
         onClicked: {
-            if(lv.currentIndex>=0)   myInvoice.removeInvRecordAt(lv.currentIndex)
-            lv.__sumToPay = myInvoice.getTotalToPay_String()
+            messageDialogRemove.open()
         }
     }
 

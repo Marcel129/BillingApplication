@@ -1,13 +1,12 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
-#include <QObject>
+#include "config.h"
 
-#include <customer.h>
-#include <config.h>
-#include <products.h>
-#include <invoicebase.h>
-#include <QMessageBox>
+#include "customer.h"
+#include "products.h"
+#include "invoicebase.h"
+
 
 class database : public QObject
 {
@@ -44,6 +43,10 @@ public:
 
     void addInvoiceToRegister(const invoiceBase & ai);
 
+    const QVector<oldInvoice> &getInvoicesRegister() const;
+    const QVector<oldInvoice> getReversedInvoicesRegister() const;
+    void setInvoicesRegister(const QVector<oldInvoice> &newInvoicesRegister);
+
 public slots:
     bool saveInvoicesRegister()const;
     bool saveCustomers()const;
@@ -68,7 +71,11 @@ public slots:
 
     bool removeProductAt(int index);
     bool removeCustomerAt(int index);
+    bool removeInvoiceAt(int index);
+    bool removeInvoiceFromReversedRegisterAt(int index);
     bool removeReciperAt(int cIndex, int rIndex);
+
+    void refreshRecipersTableView(int);
 
     const QStringList getCustomersNames()const;
     //returns recipers list for customer
@@ -80,12 +87,6 @@ public slots:
     const QStringList getProductsTypes() const;
     const QStringList getProductsTypesShorts() const;
 
-    //    void pushDatabase()const{
-    //        qInfo()<<"Zapisuję dane, zaczekaj";
-    //        system("git add -A");
-    //        system("git commit -m\"Saving data after work\"");
-    //        system("git push origin main");
-    //    }
 
 signals:
     void preAddProduct();
@@ -96,6 +97,20 @@ signals:
     void postRemoveCustomer();
     void preRemoveReciper(int index);
     void postRemoveReciper();
+
+    void preRemoveInvoice(int index);
+    void postRemoveInvoice();
+
+    void preRemoveBuyer(int index);
+    void postRemoveBuyer();
+    void preAddBuyer(int index);
+    void postAddBuyer();
+
+    void preAddReciper(int index);
+    void postAddReciper();
+
+    void refreshRecipersTableViewSignal(int);
+
 };
 
 #endif // DATABASE_H

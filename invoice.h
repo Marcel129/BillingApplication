@@ -1,19 +1,10 @@
 #ifndef INVOICE_H
 #define INVOICE_H
 
-#include <QObject>
-#include <QDebug>
-#include <QFile>
-#include <QVector>
-#include <QDate>
-#include <QString>
-#include <QDir>
-#include <QSharedPointer>
-
-#include <invoicetemplate.h>
-#include <invoicebase.h>
-#include <database.h>
-#include <config.h>
+#include "invoicetemplate.h"
+#include "invoicebase.h"
+#include "database.h"
+#include "config.h"
 
 class invoice :  public QObject, public invoiceBase
 {
@@ -74,8 +65,6 @@ signals:
     void postInvAddRecord();
     void preInvRemoveRecord(int index);
     void postInvRemoveRecord();
-
-signals:
 
 };
 

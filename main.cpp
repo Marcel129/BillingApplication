@@ -4,14 +4,15 @@
 
 #include <QLocale>
 #include <QTranslator>
-#include <QObject>
 
-#include <QMessageBox>
-
-#include <invoice.h>
-#include <database.h>
-#include <invreclistmodel.h>
-#include <productreclistmodel.h>
+#include "config.h"
+#include "invoice.h"
+#include "database.h"
+#include "invreclistmodel.h"
+#include "productreclistmodel.h"
+#include "registerreclistmodel.h"
+#include "buyersreclistmodel.h"
+#include "reciperreclistmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -22,6 +23,9 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<InvRecListModel>("InvRecords", 1, 0, "InvRecListModel");
     qmlRegisterType<ProductRecListModel>("ProductsList", 1, 0, "ProductRecListModel");
+    qmlRegisterType<RegisterRecListModel>("InvoicesRegister", 1, 0, "RegisterRecListModel");
+    qmlRegisterType<BuyersRecListModel>("BuyersList", 1, 0, "BuyersRecListModel");
+    qmlRegisterType<ReciperRecListModel>("RecipersList", 1, 0, "ReciperRecListModel");
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();

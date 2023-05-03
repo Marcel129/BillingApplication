@@ -6,6 +6,7 @@ QT += widgets
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        buyersreclistmodel.cpp \
         customer.cpp \
         database.cpp \
         invoice.cpp \
@@ -15,7 +16,9 @@ SOURCES += \
         invreclistmodel.cpp \
         main.cpp \
         productreclistmodel.cpp \
-        products.cpp
+        products.cpp \
+        reciperreclistmodel.cpp \
+        registerreclistmodel.cpp
 
 RESOURCES += qml.qrc
 
@@ -40,6 +43,7 @@ DISTFILES += \
     images/mouse.png
 
 HEADERS += \
+    buyersreclistmodel.h \
     config.h \
     customer.h \
     database.h \
@@ -49,4 +53,6 @@ HEADERS += \
     invoicetemplate.h \
     invreclistmodel.h \
     productreclistmodel.h \
-    products.h
+    products.h \
+    reciperreclistmodel.h \
+    registerreclistmodel.h

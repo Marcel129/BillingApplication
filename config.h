@@ -1,10 +1,19 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+//libs
+#include <QDebug>
+#include <QFile>
+#include <QVector>
 #include <QString>
 #include <QStringList>
+#include <QObject>
+#include <QMessageBox>
+#include <QDate>
+#include <QDir>
+#include <QSharedPointer>
 
-//#define DEV_MODE
+#define DEV_MODE
 
 #ifdef DEV_MODE
 const QString resourcesPath("D:\\SzkolkaRoslinOpatow\\Application_deployment\\External_resources\\");
