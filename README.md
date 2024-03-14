@@ -7,7 +7,7 @@ Aplikacja powstała z myślą o użytkowaniu przez osoby mniej techniczne (np. o
 Program wyposażono w możliwość zdalnej aktualizacji w razie wprowadzenia zmian/usuwania błędów.
 
 ### Przykład wystawionego rachunku
-![image](https://github.com/Marcel129/SmallBussinesApplication/assets/62217145/0ae0d2b7-9d47-46f5-8cf2-43f42b34d360)
+![image](https://github.com/Marcel129/SmallBussinesApplication/assets/62217145/b2c1f2e8-6691-4a09-8ea5-0b075c27e499)
 
 # Karty aplikacji
 ### Karta "Rachunek"
