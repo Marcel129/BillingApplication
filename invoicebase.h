@@ -1,9 +1,16 @@
 #ifndef INVOICEBASE_H
 #define INVOICEBASE_H
 
-#include "invoicerecord.h"
-#include "customer.h"
-#include "config.h"
+#include <QObject>
+#include <QDebug>
+#include <QFile>
+#include <QVector>
+#include <QDate>
+#include <QString>
+
+#include <invoicerecord.h>
+#include <customer.h>
+#include <config.h>
 
 class invoiceBase {
 

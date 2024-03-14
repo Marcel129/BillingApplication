@@ -85,16 +85,6 @@ Item {
             standardButtons: StandardButton.Ok
         }
 
-        MessageDialog {
-            id: mmsgBoxOk
-            title: "Informacja"
-            text: "Poprawnie dodano pozycję do bazy"
-            standardButtons: StandardButton.Ok
-            onAccepted: {
-                close()
-            }
-        }
-
 
         MButton {
             id:addButton
@@ -116,8 +106,9 @@ Item {
                                 polishName.text,
                                 species.text
                                 )
-                    mmsgBoxOk.open()
                 }
+
+
             }
         }
     }
@@ -181,7 +172,7 @@ Item {
                     id:lpElem
                     text: model.lp
                     height: elemRootRec.height
-                    width: 60
+                    width: 40
                     font.bold: elemRootRec.__fontBold
                     color: __fontColor
                     font.family: __font
@@ -302,7 +293,7 @@ Item {
                     color: __fontColor
                     font.family: __font
                     height: elemRootRec.height
-                    width: 60
+                    width: 40
                     font.pixelSize: fontSize
                     anchors{
                         top: elemRootRec.top
@@ -444,21 +435,7 @@ Item {
                 topMargin: 10
             }
             onClicked: {
-
-                messageDialogDelete.open()
-            }
-        }
-        MessageDialog {
-            id: messageDialogDelete
-            title: "Ostrzeżenie"
-            text: "Czy na pewno chcesz usunąć pozycję z bazy? Ta decyzja jest nieodwracalna"
-            standardButtons: StandardButton.Yes | StandardButton.No
-            onYes: {
                 myDatabase.removeProductAt(lv.currentIndex)
-                close()
-            }
-            onNo:{
-                close()
             }
         }
     }
