@@ -40,10 +40,10 @@ public slots:
     QString getSellingDate_String();
     QString getBillingPalce();
 
-    void setNewInvoiceNumber(const QString  & nin = invoicesSavingFolderPath);
+    void setNewInvoiceNumber(const QString  & nin = "");
     const QString getNewInvoiceNumber() const;
 
-    void setInvoiceNumber_slot(const QString  & nin = invoicesSavingFolderPath);
+    void setInvoiceNumber_slot(const QString  & nin = "");
     const QString getInvoiceNumber_slot() const;
 
     bool addRecord(const QString n, const QString  q, const QString p, const QString r);

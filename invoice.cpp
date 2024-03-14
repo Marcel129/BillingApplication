@@ -53,7 +53,7 @@ void invoice::setNewInvoiceNumber(const QString &nin){
             invoiceNumber = "1/" + m + "/"+y;
         }
         else{
-            QStringList mList= newNumber.split(invoicesSavingFolderPath);
+            QStringList mList= newNumber.split("/");
 
             //incorrect invoice number
             if(mList.size() < 3){
@@ -189,7 +189,7 @@ void invoice::createLatexInvoice(){
 
     QString tmpNum = invoiceNumber, tmpBuy =buyer.getName();
     removePolishDiacritics(tmpBuy);
-    invoiceFileName = "Rachunek_Nr_" + tmpNum.replace(invoicesSavingFolderPath,invoicesSavingFolderPath) + "_" + tmpBuy.replace(invoicesSavingFolderPath, invoicesSavingFolderPath);
+   invoiceFileName = "Rachunek_Nr_" + tmpNum.replace("/",".") + "_" + tmpBuy.replace(" ", "_");
 //    invoiceFileName = invoiceFileName.replace("\"","_");
     removeCharactersNotAllowedInAFileName(invoiceFileName);
 

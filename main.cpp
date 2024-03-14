@@ -45,8 +45,8 @@ int main(int argc, char *argv[])
      }
 
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty(invoicesSavingFolderPath, &myInvoice);
-    engine.rootContext()->setContextProperty(invoicesSavingFolderPath, db.data());
+    engine.rootContext()->setContextProperty("myInvoice", &myInvoice);
+    engine.rootContext()->setContextProperty("myDatabase", db.data());
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

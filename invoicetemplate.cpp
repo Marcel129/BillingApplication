@@ -19,7 +19,7 @@ QStringList & InvoiceTemplate::getAllParts(){
 bool InvoiceTemplate::load()
 {
     QFile mfile(resourcesFolderPath + FVLTemplateDefaultFileName);
-    QString invoicesFolderPath("");
+    QString tmp_text("");
 
 
     if (!mfile.open(QIODevice::ReadOnly))
@@ -75,29 +75,29 @@ void InvoiceTemplate::insertValuesIntoKeywords(
         double totalSum){
 
     for(QString & s: parts){
-        s.replace(invoicesSavingFolderPath, Seller.getBussinessName());
-        s.replace(invoicesSavingFolderPath,Seller.getAdress());
-        s.replace(invoicesSavingFolderPath, Seller.getPostal_code() + " "+Seller.getTown());
-        s.replace(invoicesSavingFolderPath, Seller.getTown());
-        s.replace(invoicesSavingFolderPath, Seller.getName());
-        s.replace(invoicesSavingFolderPath, Seller.getProducerNumber());
-        s.replace(invoicesSavingFolderPath, saleDate.toString(outputDateFormat));
-        s.replace(invoicesSavingFolderPath, billingDate.toString(outputDateFormat));
-        s.replace(invoicesSavingFolderPath, billingPalce);
-        s.replace(invoicesSavingFolderPath, Seller.getPhoneNumber());
-        s.replace(invoicesSavingFolderPath, buyer.getName());
-        s.replace(invoicesSavingFolderPath, buyer.getAdress());
-        s.replace(invoicesSavingFolderPath, buyer.getPostal_code() +" "+ buyer.getTown());
-        s.replace(invoicesSavingFolderPath, buyer.getNIP());
-        s.replace(invoicesSavingFolderPath,recip.getName());
-        s.replace(invoicesSavingFolderPath,recip.getAdress());
-        s.replace(invoicesSavingFolderPath, recip.getPostal_code() +" "+ recip.getTown());
-        s.replace(invoicesSavingFolderPath,invoiceNumber);
-        s.replace(invoicesSavingFolderPath, numberInWords_polish(totalSum));
-        s.replace(invoicesSavingFolderPath, QString::number(totalSum, 'd',2)+" zł");
-        s.replace(invoicesSavingFolderPath,paymentMethod);
-        s.replace(invoicesSavingFolderPath, paymentDeadline.toString(inputDateFormat));
-        s.replace(invoicesSavingFolderPath,Seller.getAccountNumber());
+        s.replace("KEYWORD-SELLER-BUSSINES-FULL-NAME", Seller.getBussinessName());
+        s.replace("KEYWORD-SELLER-ADRESS-1",Seller.getAdress());
+        s.replace("KEYWORD-SELLER-ADRESS-2", Seller.getPostal_code() + " "+Seller.getTown());
+        s.replace("KEYWORD-SELLER-BUSSINES-TOWN", Seller.getTown());
+        s.replace("KEYWORD-SELLER-NAME", Seller.getName());
+        s.replace("KEYWORD-PRODUCER-NUMBER", Seller.getProducerNumber());
+        s.replace("KEYWORD-SELLING-DATE", saleDate.toString(outputDateFormat));
+        s.replace("KEYWORD-BILLING-DATE", billingDate.toString(outputDateFormat));
+        s.replace("KEYWORD-BILLING-TOWN", billingPalce);
+        s.replace("KEYWORD-SELLER-PHONE-NUMBERS", Seller.getPhoneNumber());
+        s.replace("KEYWORD-BUYER-BUSSINES-FULL-NAME", buyer.getName());
+        s.replace("KEYWORD-BUYER-ADRESS-1", buyer.getAdress());
+        s.replace("KEYWORD-BUYER-ADRESS-2", buyer.getPostal_code() +" "+ buyer.getTown());
+        s.replace("KEYWORD-BUYER-NIP", buyer.getNIP());
+        s.replace("KEYWORD-RECIPIENT-FULL-NAME",recip.getName());
+        s.replace("KEYWORD-RECIPER-ADRESS-1",recip.getAdress());
+        s.replace("KEYWORD-RECIPER-ADRESS-2", recip.getPostal_code() +" "+ recip.getTown());
+        s.replace("KEYWORD-INVOICE-NUMBER",invoiceNumber);
+        s.replace("KEYWORD-TOTAL-TO-PAY-IN-WORDS", numberInWords_polish(totalSum));
+        s.replace("KEYWORD-TOTAL-TO-PAY", QString::number(totalSum, 'd',2)+" zł");
+        s.replace("KEYWORD-PAYMENT-METHOD",paymentMethod);
+        s.replace("KEYWORD-PAYMENT-DATE", paymentDeadline.toString(inputDateFormat));
+        s.replace("KEYWORD-SELLER-ACCOUNT-NUMBER",Seller.getAccountNumber());
     }
 }
 
