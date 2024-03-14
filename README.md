@@ -4,6 +4,8 @@ Do tworzenia plików PDF wykorzystano skład tekstu LATEX. Program przechowuje i
 
 Aplikacja powstała z myślą o użytkowaniu przez osoby mniej techniczne (np. osoby starsze), ale prowadzące własną działalność gospodarczą i potrzebujace wystawiać rachunki, stąd ograniczona ilość funcji i niezwykle prosty interfejs użytkownika. 
 
+Program wyposażono w możliwość zdalnej aktualizacji w razie wprowadzenia zmian/usuwania błędów.
+
 ### Przykład wystawionego rachunku
 ![image](https://github.com/Marcel129/SmallBussinesApplication/assets/62217145/63b44666-42ee-4a0f-8103-a9eb3c5fffa1)
 
