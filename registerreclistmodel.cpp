@@ -27,7 +27,7 @@ QVariant RegisterRecListModel::data(const QModelIndex &index, int role) const
     case invoiceNumber: return QVariant(currIvoice.getInvoiceNumber());
     case buyer: return QVariant(currIvoice.getBuyer().getName());
     case peymantMethod: return QVariant(currIvoice.getPaymentMethod());
-    case date: return QVariant(currIvoice.getSaleDate().toString(invoicesSavingFolderPath));
+    case date: return QVariant(currIvoice.getSaleDate().toString("dd.MM.yyyy"));
     }
 
     // FIXME: Implement me!
