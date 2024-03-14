@@ -2,7 +2,7 @@
 #define INVRECLISTMODEL_H
 
 #include <QAbstractListModel>
-#include "invoice.h"
+#include <invoice.h>
 class invoice;
 
 class InvRecListModel : public QAbstractListModel

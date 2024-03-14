@@ -1,7 +1,9 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
-#include "config.h"
+#include <QDebug>
+#include <QFile>
+#include <QVector>
 
 const int reciperElementsCount = 4;
 const int customerElementsCount = 5;

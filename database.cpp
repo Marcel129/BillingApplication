@@ -173,7 +173,6 @@ bool database::saveProducts() const
 
 void database::addCustomer(const QString &n, const QString &a, const QString &t, const QString &pc, const QString &NIP)
 {
-    emit preAddBuyer(customers.size());
     customer c;
     c.setName(n);
     c.setAdress(a);
@@ -181,12 +180,10 @@ void database::addCustomer(const QString &n, const QString &a, const QString &t,
     c.setTown(t);
     c.setNIP(NIP);
     customers.push_back(c);
-    emit postAddBuyer();
 }
 
 void database::addReciper(const QString &cust, const QString &n, const QString &a, const QString &t, const QString &pc)
 {
-    emit preAddReciper(cust.size());
     reciper r;
     r.setName(n);
     r.setAdress(a);
@@ -196,7 +193,6 @@ void database::addReciper(const QString &cust, const QString &n, const QString &
     for(auto & c: customers){
         if(c.getName() == cust){
             c.addReciper(r);
-            emit postAddReciper();
             return;
         }
     }
@@ -272,95 +268,23 @@ bool database::removeProductAt(int index){
 
 bool database::removeCustomerAt(int index)
 {
-    emit preRemoveBuyer(index);
-    int i=0, recipersCount = customers.at(index).getRecipers().size();
-
-    while(i<recipersCount){
-        emit preRemoveReciper(i);
-        i++;
-    }
-    i=0;
-
     if(index >=0 && index < customers.size()){
         customers.erase(customers.begin()+index);
-        while(i<recipersCount){
-            emit postRemoveReciper();
-            i++;
-        }
-        emit postRemoveBuyer();
         return true;
     }
-    while(i<recipersCount){
-        emit postRemoveReciper();
-        i++;
-    }
-    emit postRemoveBuyer();
     return false;
 }
-
-bool database::removeInvoiceAt(int index)
-{
-    emit preRemoveInvoice(index);
-
-    if(index >=0 && index < invoicesRegister.size()){
-        invoicesRegister.erase(invoicesRegister.begin()+index);
-        emit postRemoveInvoice();
-        return true;
-    }
-    emit postRemoveInvoice();
-    return false;
-}
-
-bool database::removeInvoiceFromReversedRegisterAt(int index)
-{
-    emit preRemoveInvoice(index);
-
-    if(index >=0 && index < invoicesRegister.size()){
-        invoicesRegister.erase(invoicesRegister.end()-index-1);
-        emit postRemoveInvoice();
-        return true;
-    }
-    emit postRemoveInvoice();
-    return false;
-}
-
 
 bool database::removeReciperAt(int cIndex, int rIndex)
 {
-    emit preRemoveReciper(rIndex);
     if(cIndex >=0 && cIndex < customers.size()){
         if(rIndex >=0 && rIndex < customers[cIndex].getRecipers().size()){
             customers[cIndex].removeReciper(customers[cIndex].getRecipers()[rIndex]);
-            emit postRemoveReciper();
             return true;
         }
-        emit postRemoveReciper();
         return false;
     }
-    emit postRemoveReciper();
     return false;
-}
-
-void database::refreshRecipersTableView(int index)
-{
-    emit refreshRecipersTableViewSignal(index);
-//    int i=0, recipersCount = this->customers.at(rowsCount).getRecipers().size();
-
-//    while(i<recipersCount){
-//        emit preRemoveReciper(0);
-//        emit postRemoveReciper();
-//        i++;
-//    }
-//    i=0;
-
-//    while(i<recipersCount){
-//        emit preAddReciper(i);
-//        emit postAddReciper();
-//        i++;
-//    }
-//    i=0;
-
-
 }
 
 const QString database::getLatestInvoiceNumber(){
@@ -385,7 +309,6 @@ const QVector<product> &database::getProducts() const
     return products;
 }
 
-
 void database::addInvoiceToRegister(const invoiceBase &ai){
 
     oldInvoice oi;
@@ -403,29 +326,6 @@ void database::addInvoiceToRegister(const invoiceBase &ai){
     oi.setInvoiceNumber(ai.getInvoiceNumber());
 
     invoicesRegister.push_back(oi);
-}
-
-const QVector<oldInvoice> &database::getInvoicesRegister() const
-{
-    return invoicesRegister;
-}
-
-const QVector<oldInvoice> database::getReversedInvoicesRegister() const
-{
-    QVector<oldInvoice> tmp;
-    int i =0;
-
-    while(i<invoicesRegister.size()){
-        tmp.push_back(invoicesRegister[invoicesRegister.size()-1-i]);
-        i++;
-    }
-
-    return tmp;
-}
-
-void database::setInvoicesRegister(const QVector<oldInvoice> &newInvoicesRegister)
-{
-    invoicesRegister = newInvoicesRegister;
 }
 
 database::database(QObject *parent)
@@ -620,7 +520,7 @@ bool database::loadInvoicesRegister()
                 break;
             }
             else {
-                qDebug()<<"Error during loading the invoices register";
+                qDebug()<<"Error during invoices register loading a";
                 return false;
             }
         }

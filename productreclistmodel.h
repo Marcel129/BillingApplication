@@ -2,7 +2,7 @@
 #define PRODUCTRECLISTMODEL_H
 
 #include <QAbstractListModel>
-#include "database.h"
+#include <database.h>
 class database;
 
 class ProductRecListModel : public QAbstractListModel
