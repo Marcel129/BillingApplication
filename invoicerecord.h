@@ -8,11 +8,11 @@
 #define MIN_PRICE_VALUE 0
 #define MAX_PRICE_VALUE 100000
 
-const QString invoicesFolderPath("26/06/6418");
-const QString invoicesSavingFolderPath("26/06/6418");
-const QString invoicesSavingFolderPath( "szt.");
-const QString invoicesSavingFolderPath(" & ");
-const QString invoicesSavingFolderPath(" \\\\ \\hline");
+const QString FVRecord_productName_DefValue("26/06/6418");
+const QString FVRecord_PKWiU_DefValue("26/06/6418");
+const QString FVRecord_unit_DefValue( "szt.");
+const QString FVTableElemSeparator_DefValue(" & ");
+const QString FVTable_EOL_DefValue(" \\\\ \\hline");
 
 const int recordElementsCount = 6;
 

@@ -558,7 +558,7 @@ Item {
                 }
                 onCurrentIndexChanged:  {
                     myDatabase.refreshRecipersTableView(lv.currentIndex)
-                    currentBuyerTF.text = "Odbiorcy dla: " + myDatabase.getCustomerName(lv.currentIndex)
+
                 }
 
             }
@@ -571,7 +571,7 @@ Item {
             width: removePositionButton.width
             anchors{
                 right: listsRootItem.right
-                top: buyerOfRecipersBckRec.top
+                top: recipersListMainElem.top
             }
             onClicked: {
                 messageDialogDeleteReciper.open()
@@ -594,40 +594,15 @@ Item {
             }
         }
 
-        Rectangle{
-            id:buyerOfRecipersBckRec
-            anchors{
-                right: recipersListMainElem.right
-                left: recipersListMainElem.left
-                top: buyersListMainElem.bottom
-                topMargin: 20
-            }
-            height: 30
-            color: "#5865F2"
-                    TextField{
-                        id:currentBuyerTF
-                        font.bold: true
-                        horizontalAlignment:  "AlignHCenter"
-                        color: "white"
-                        font.family: "Raleway"
-                        height: buyerOfRecipersBckRec.height
-                        font.pixelSize: 18
-                        anchors{
-                            top: buyerOfRecipersBckRec.top
-                            left: buyerOfRecipersBckRec.left
-                        }
-                        background:InvHeaderElem_bck{}
-                    }
-        }
-
         Item{
             id:  recipersListMainElem
             anchors{
                 right:removePositionButton.left
                 left: listsRootItem.left
-                top: buyerOfRecipersBckRec.bottom
+                top: buyersListMainElem.bottom
                 bottom: listsRootItem.bottom
                 rightMargin: 10
+                topMargin: 20
             }
 
             Component{

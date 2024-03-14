@@ -20,7 +20,6 @@ Window{
             myDatabase.saveCustomers()
             myDatabase.saveSellers()
             myDatabase.saveProducts()
-            myDatabase.pushDatabaseToRemoteRepository()
         }
         isHiding = true
     }
