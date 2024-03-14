@@ -3,43 +3,7 @@
 #include <QtCore/qurl.h>
 
 namespace QmlCacheGeneratedCode {
-namespace _0x5f__LineEdit_qml { 
-    extern const unsigned char qmlData[];
-    const QQmlPrivate::CachedQmlUnit unit = {
-        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
-    };
-}
-namespace _0x5f__InvElem_bck_qml { 
-    extern const unsigned char qmlData[];
-    const QQmlPrivate::CachedQmlUnit unit = {
-        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
-    };
-}
-namespace _0x5f__OptionsScreen_qml { 
-    extern const unsigned char qmlData[];
-    const QQmlPrivate::CachedQmlUnit unit = {
-        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
-    };
-}
-namespace _0x5f__main_qml { 
-    extern const unsigned char qmlData[];
-    const QQmlPrivate::CachedQmlUnit unit = {
-        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
-    };
-}
-namespace _0x5f__ChooseField_qml { 
-    extern const unsigned char qmlData[];
-    const QQmlPrivate::CachedQmlUnit unit = {
-        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
-    };
-}
-namespace _0x5f__MenuBar_qml { 
-    extern const unsigned char qmlData[];
-    const QQmlPrivate::CachedQmlUnit unit = {
-        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
-    };
-}
-namespace _0x5f__InvoiceTableHeader_qml { 
+namespace _0x5f__PlantsScreen_qml { 
     extern const unsigned char qmlData[];
     const QQmlPrivate::CachedQmlUnit unit = {
         reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
@@ -51,31 +15,19 @@ namespace _0x5f__MButton_qml {
         reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
     };
 }
-namespace _0x5f__PlantsScreen_qml { 
+namespace _0x5f__main_qml { 
+    extern const unsigned char qmlData[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
+    };
+}
+namespace _0x5f__LineEdit_qml { 
     extern const unsigned char qmlData[];
     const QQmlPrivate::CachedQmlUnit unit = {
         reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
     };
 }
 namespace _0x5f__BarButton_qml { 
-    extern const unsigned char qmlData[];
-    const QQmlPrivate::CachedQmlUnit unit = {
-        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
-    };
-}
-namespace _0x5f__InvFooter_qml { 
-    extern const unsigned char qmlData[];
-    const QQmlPrivate::CachedQmlUnit unit = {
-        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
-    };
-}
-namespace _0x5f__ClientsScreen_qml { 
-    extern const unsigned char qmlData[];
-    const QQmlPrivate::CachedQmlUnit unit = {
-        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
-    };
-}
-namespace _0x5f__InvHeaderElem_bck_qml { 
     extern const unsigned char qmlData[];
     const QQmlPrivate::CachedQmlUnit unit = {
         reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
@@ -88,6 +40,66 @@ namespace _0x5f__RegisterScreen_qml {
     };
 }
 namespace _0x5f__InvoiceScreen_qml { 
+    extern const unsigned char qmlData[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
+    };
+}
+namespace _0x5f__MenuBar_qml { 
+    extern const unsigned char qmlData[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
+    };
+}
+namespace _0x5f__FilledRectangleWithText_qml { 
+    extern const unsigned char qmlData[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
+    };
+}
+namespace _0x5f__InvFooter_qml { 
+    extern const unsigned char qmlData[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
+    };
+}
+namespace _0x5f__InvoiceTableHeader_qml { 
+    extern const unsigned char qmlData[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
+    };
+}
+namespace _0x5f__OptionsScreen_qml { 
+    extern const unsigned char qmlData[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
+    };
+}
+namespace _0x5f__ClientsScreen_qml { 
+    extern const unsigned char qmlData[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
+    };
+}
+namespace _0x5f__InvElem_bck_qml { 
+    extern const unsigned char qmlData[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
+    };
+}
+namespace _0x5f__InvHeaderElem_bck_qml { 
+    extern const unsigned char qmlData[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
+    };
+}
+namespace _0x5f__ChooseField_qml { 
+    extern const unsigned char qmlData[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
+    };
+}
+namespace _0x5f__LineEditReadOnly_qml { 
     extern const unsigned char qmlData[];
     const QQmlPrivate::CachedQmlUnit unit = {
         reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), nullptr, nullptr
@@ -107,21 +119,23 @@ Q_GLOBAL_STATIC(Registry, unitRegistry)
 
 
 Registry::Registry() {
-        resourcePathToCachedUnit.insert(QStringLiteral("/LineEdit.qml"), &QmlCacheGeneratedCode::_0x5f__LineEdit_qml::unit);
-        resourcePathToCachedUnit.insert(QStringLiteral("/InvElem_bck.qml"), &QmlCacheGeneratedCode::_0x5f__InvElem_bck_qml::unit);
-        resourcePathToCachedUnit.insert(QStringLiteral("/OptionsScreen.qml"), &QmlCacheGeneratedCode::_0x5f__OptionsScreen_qml::unit);
-        resourcePathToCachedUnit.insert(QStringLiteral("/main.qml"), &QmlCacheGeneratedCode::_0x5f__main_qml::unit);
-        resourcePathToCachedUnit.insert(QStringLiteral("/ChooseField.qml"), &QmlCacheGeneratedCode::_0x5f__ChooseField_qml::unit);
-        resourcePathToCachedUnit.insert(QStringLiteral("/MenuBar.qml"), &QmlCacheGeneratedCode::_0x5f__MenuBar_qml::unit);
-        resourcePathToCachedUnit.insert(QStringLiteral("/InvoiceTableHeader.qml"), &QmlCacheGeneratedCode::_0x5f__InvoiceTableHeader_qml::unit);
-        resourcePathToCachedUnit.insert(QStringLiteral("/MButton.qml"), &QmlCacheGeneratedCode::_0x5f__MButton_qml::unit);
         resourcePathToCachedUnit.insert(QStringLiteral("/PlantsScreen.qml"), &QmlCacheGeneratedCode::_0x5f__PlantsScreen_qml::unit);
+        resourcePathToCachedUnit.insert(QStringLiteral("/MButton.qml"), &QmlCacheGeneratedCode::_0x5f__MButton_qml::unit);
+        resourcePathToCachedUnit.insert(QStringLiteral("/main.qml"), &QmlCacheGeneratedCode::_0x5f__main_qml::unit);
+        resourcePathToCachedUnit.insert(QStringLiteral("/LineEdit.qml"), &QmlCacheGeneratedCode::_0x5f__LineEdit_qml::unit);
         resourcePathToCachedUnit.insert(QStringLiteral("/BarButton.qml"), &QmlCacheGeneratedCode::_0x5f__BarButton_qml::unit);
-        resourcePathToCachedUnit.insert(QStringLiteral("/InvFooter.qml"), &QmlCacheGeneratedCode::_0x5f__InvFooter_qml::unit);
-        resourcePathToCachedUnit.insert(QStringLiteral("/ClientsScreen.qml"), &QmlCacheGeneratedCode::_0x5f__ClientsScreen_qml::unit);
-        resourcePathToCachedUnit.insert(QStringLiteral("/InvHeaderElem_bck.qml"), &QmlCacheGeneratedCode::_0x5f__InvHeaderElem_bck_qml::unit);
         resourcePathToCachedUnit.insert(QStringLiteral("/RegisterScreen.qml"), &QmlCacheGeneratedCode::_0x5f__RegisterScreen_qml::unit);
         resourcePathToCachedUnit.insert(QStringLiteral("/InvoiceScreen.qml"), &QmlCacheGeneratedCode::_0x5f__InvoiceScreen_qml::unit);
+        resourcePathToCachedUnit.insert(QStringLiteral("/MenuBar.qml"), &QmlCacheGeneratedCode::_0x5f__MenuBar_qml::unit);
+        resourcePathToCachedUnit.insert(QStringLiteral("/FilledRectangleWithText.qml"), &QmlCacheGeneratedCode::_0x5f__FilledRectangleWithText_qml::unit);
+        resourcePathToCachedUnit.insert(QStringLiteral("/InvFooter.qml"), &QmlCacheGeneratedCode::_0x5f__InvFooter_qml::unit);
+        resourcePathToCachedUnit.insert(QStringLiteral("/InvoiceTableHeader.qml"), &QmlCacheGeneratedCode::_0x5f__InvoiceTableHeader_qml::unit);
+        resourcePathToCachedUnit.insert(QStringLiteral("/OptionsScreen.qml"), &QmlCacheGeneratedCode::_0x5f__OptionsScreen_qml::unit);
+        resourcePathToCachedUnit.insert(QStringLiteral("/ClientsScreen.qml"), &QmlCacheGeneratedCode::_0x5f__ClientsScreen_qml::unit);
+        resourcePathToCachedUnit.insert(QStringLiteral("/InvElem_bck.qml"), &QmlCacheGeneratedCode::_0x5f__InvElem_bck_qml::unit);
+        resourcePathToCachedUnit.insert(QStringLiteral("/InvHeaderElem_bck.qml"), &QmlCacheGeneratedCode::_0x5f__InvHeaderElem_bck_qml::unit);
+        resourcePathToCachedUnit.insert(QStringLiteral("/ChooseField.qml"), &QmlCacheGeneratedCode::_0x5f__ChooseField_qml::unit);
+        resourcePathToCachedUnit.insert(QStringLiteral("/LineEditReadOnly.qml"), &QmlCacheGeneratedCode::_0x5f__LineEditReadOnly_qml::unit);
     QQmlPrivate::RegisterQmlUnitCacheHook registration;
     registration.version = 0;
     registration.lookupCachedQmlUnit = &lookupCachedUnit;
