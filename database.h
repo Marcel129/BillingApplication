@@ -31,7 +31,7 @@ public:
     bool loadInvoicesRegister();
 
     //do not use if not necessery
-    bool loadCustomersFromOldRegister();;
+    bool loadCustomersFromOldRegister();
 
     bool getIsLoaded() const;
 
@@ -52,6 +52,7 @@ public slots:
     bool saveCustomers()const;
     bool saveSellers()const;
     bool saveProducts()const;
+    void pushDatabaseToRemoteRepository()const;
 
     void addCustomer(const QString & n,
                      const QString & a,
@@ -67,7 +68,7 @@ public slots:
                     const QString & latinName,
                     const QString & polishName,
                     const QString & species,
-                    const QString & registerNumber = "");
+                    const QString & registerNumber = invoicesSavingFolderPath);
 
     bool removeProductAt(int index);
     bool removeCustomerAt(int index);
@@ -81,11 +82,13 @@ public slots:
     //returns recipers list for customer
     const QStringList getRecipersNames(const QString & custName);
     const QStringList getSellersNames()const;
-    const QStringList getProductsPolishNames(const QString & filter = "") const;
+    const QStringList getProductsPolishNames(const QString & filter = invoicesSavingFolderPath) const;
     const QStringList getPaymentMethods()const;
 
     const QStringList getProductsTypes() const;
     const QStringList getProductsTypesShorts() const;
+
+    const QString getCustomerName(int index);
 
 
 signals:

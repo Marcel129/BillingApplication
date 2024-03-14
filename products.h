@@ -5,15 +5,15 @@
 
 const int productsElementsCount = 5;
 const QStringList productsTypes = {
-    "DRZEWA I KRZEWY LIŚCIASTE",
-    "DRZEWA I KRZEWY IGLASTE",
-    "BYLINY"
+    invoicesSavingFolderPath,
+    invoicesSavingFolderPath,
+    invoicesSavingFolderPath
 };
 
 const QStringList productsTypesShorts = {
-    "DIKL",
-    "DIKI",
-    "BYL"
+    invoicesSavingFolderPath,
+    invoicesSavingFolderPath,
+    invoicesSavingFolderPath
 };
 
 class product
