@@ -171,6 +171,19 @@ bool database::saveProducts() const
     return true;
 }
 
+void database::pushDatabaseToRemoteRepository() const
+{
+#ifdef PUSH_DATABASE_TO_REPOSITORY
+    system("git add External_resources/Customers_database.csv"
+           "External_resources/Invoices_register.csv"
+           "External_resources/Payment_methods.csv"
+           "External_resources/Plants_database.csv"
+           "External_resources/Sellers_database.csv");
+    system("git commit -m\"Saving database on close the program \"");
+    system("git push --set-upstream https://github.com/Marcel129/SmallBA_Deployment main");
+#endif
+}
+
 void database::addCustomer(const QString &n, const QString &a, const QString &t, const QString &pc, const QString &NIP)
 {
     emit preAddBuyer(customers.size());
@@ -212,6 +225,14 @@ const QStringList database::getProductsTypesShorts() const
     return mPoductsTypesShorts;
 }
 
+const QString database::getCustomerName(int index)
+{
+    if(index>=0 && index<customers.size()){
+        return customers.at(index).getName();
+    }
+    return invoicesSavingFolderPath;
+}
+
 void database::addProduct(const QString &type,
                           const QString &latinName,
                           const QString &polishName,
@@ -220,7 +241,7 @@ void database::addProduct(const QString &type,
 {
     if(latinName == "" || polishName == ""|| species == ""){
         QMessageBox msgBox;
-        msgBox.setText("The document has been modified.");
+        msgBox.setText(invoicesSavingFolderPath);
         msgBox.exec();
         return;
     }
@@ -231,7 +252,7 @@ void database::addProduct(const QString &type,
     p.setPolishName(polishName);
     p.setSpecies(species);
     if(registerNumber == ""){
-        QString s, nRegNum = "";
+        QString s, nRegNum = invoicesSavingFolderPath;
         int biggest = 0, actuall = 0;
 
         for(const auto & e: products){
@@ -365,7 +386,7 @@ void database::refreshRecipersTableView(int index)
 
 const QString database::getLatestInvoiceNumber(){
     if(invoicesRegister.empty()){
-        return "";
+        return invoicesSavingFolderPath;
     }
     return invoicesRegister.last().getInvoiceNumber();
 }
@@ -447,7 +468,7 @@ database::database(QObject *parent)
 bool database::loadCustomers(){
 
     QFile mfile(CustomersDatabasePath);
-    QString tmp_text = "";
+    QString tmp_text = invoicesSavingFolderPath;
     QStringList tmp_vec;
 
     if (!mfile.open(QIODevice::ReadOnly))
@@ -494,7 +515,7 @@ bool database::loadCustomers(){
 bool database::loadPaymentMethods()
 {
     QFile mfile(PaymentMethodsPath);
-    QString tmp_text = "";
+    QString tmp_text = invoicesSavingFolderPath;
     QStringList tmp_vec;
 
     if (!mfile.open(QIODevice::ReadOnly))
@@ -524,7 +545,7 @@ bool database::loadPaymentMethods()
 bool database::loadProducts()
 {
     QFile mfile(ProductsDatabasePath);
-    QString tmp_text = "";
+    QString tmp_text = invoicesSavingFolderPath;
     QStringList tmp_vec;
 
     if (!mfile.open(QIODevice::ReadOnly))
@@ -563,7 +584,7 @@ bool database::loadProducts()
 bool database::loadInvoicesRegister()
 {
     QFile mfile(InvoicesRegisterPath);
-    QString tmp_text = "";
+    QString tmp_text = invoicesSavingFolderPath;
     QStringList tmp_vec;
     oldInvoice oi;
     QDate tmp_date;
@@ -594,19 +615,19 @@ bool database::loadInvoicesRegister()
 
         switch(counter){
         case  0:{
-            tmp_text.replace(CSVSplitTag, "");
+            tmp_text.replace(CSVSplitTag, invoicesSavingFolderPath);
             oi.setSaleDate(tmp_date.fromString(tmp_text, inputDateFormat));
             counter = 1;
             break;
         }
         case 1:{
-            tmp_text.replace(CSVSplitTag, "");
+            tmp_text.replace(CSVSplitTag, invoicesSavingFolderPath);
             oi.setBillingDate(tmp_date.fromString(tmp_text, inputDateFormat));
             counter = 2;
             break;
         }
         case 2:{
-            tmp_text.replace(CSVSplitTag, "");
+            tmp_text.replace(CSVSplitTag, invoicesSavingFolderPath);
             oi.setLastModificationDate(tmp_date.fromString(tmp_text, inputDateFormat));
             counter = 3;
             break;
@@ -652,7 +673,7 @@ bool database::loadInvoicesRegister()
             }
         }
         case 6:{
-            tmp_text.replace(CSVSplitTag, "");
+            tmp_text.replace(CSVSplitTag, invoicesSavingFolderPath);
             oi.setPaymentMethod(tmp_text);
             counter = 8;
             break;
@@ -672,20 +693,20 @@ bool database::loadInvoicesRegister()
             }
         }
         case 8:{
-            tmp_text.replace(CSVSplitTag, "");
+            tmp_text.replace(CSVSplitTag, invoicesSavingFolderPath);
             oi.setPaymentDeadline(tmp_date.fromString(tmp_text, inputDateFormat));
             counter = 9;
             break;
         }
         case 9:{
-            tmp_text.replace(CSVSplitTag, "");
+            tmp_text.replace(CSVSplitTag, invoicesSavingFolderPath);
             bool isPaid = tmp_text == "TAK";
             oi.setIsPaid(isPaid);
             counter = 10;
             break;
         }
         case 10:{
-            tmp_text.replace(CSVSplitTag, "");
+            tmp_text.replace(CSVSplitTag, invoicesSavingFolderPath);
             oi.setInvoiceNumber(tmp_text);
             invoicesRegister.push_back(oi);
             oldInvoice oi_new;
@@ -721,8 +742,8 @@ Nr rachunku
 //do not use if not necessery
 bool database::loadCustomersFromOldRegister(){
 
-    QFile mfile("D:\\SzkolkaRoslinOpatow\\Application_deployment\\External_resources\\dupa.csv");
-    QString tmp_text = "";
+    QFile mfile(invoicesSavingFolderPath);
+    QString tmp_text = invoicesSavingFolderPath;
     QStringList tmp_vec;
     oldInvoice oi;
     QDate tmp_date;
@@ -753,10 +774,10 @@ bool database::loadCustomersFromOldRegister(){
         else{
 pierwszy:
             qDebug()<<"aaa: "<<tmp_vec[0];
-            tmp_date = QDate::fromString(tmp_vec[0], "dd.MM.yyyy");
+            tmp_date = QDate::fromString(tmp_vec[0], invoicesSavingFolderPath);
             oi.setBillingDate(tmp_date);
 
-            tmp_date = QDate::fromString(tmp_vec[1], "dd.MM.yyyy");
+            tmp_date = QDate::fromString(tmp_vec[1], invoicesSavingFolderPath);
             oi.setLastModificationDate(tmp_date);
 
             oi.setSaleDate(oi.getBillingDate());
@@ -792,10 +813,10 @@ pierwszy:
 
             if(tmp_vec[13] == "zapłacono gotówką"){
                 oi.setPaymentDeadline(oi.getBillingDate());
-                oi.setPaymentMethod("zapłacono gotówką");
+                oi.setPaymentMethod(invoicesSavingFolderPath);
             }
             else{
-                oi.setPaymentDeadline(QDate::fromString(tmp_vec[13], "dd.MM.yyyy"));
+                oi.setPaymentDeadline(QDate::fromString(tmp_vec[13], invoicesSavingFolderPath));
                 oi.setPaymentMethod(tmp_vec[5]);
             }
 
@@ -816,7 +837,7 @@ pierwszy:
 bool database::loadSellers()
 {
     QFile mfile(SellersDatabasePath);
-    QString tmp_text = "";
+    QString tmp_text = invoicesSavingFolderPath;
     QStringList tmp_vec;
 
     if (!mfile.open(QIODevice::ReadOnly))

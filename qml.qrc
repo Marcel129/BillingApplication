@@ -17,5 +17,7 @@
         <file>InvFooter.qml</file>
         <file>RegisterScreen.qml</file>
         <file>MButton.qml</file>
+        <file>LineEditReadOnly.qml</file>
+        <file>FilledRectangleWithText.qml</file>
     </qresource>
 </RCC>
