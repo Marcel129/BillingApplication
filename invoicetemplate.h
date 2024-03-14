@@ -5,9 +5,9 @@
 #include "database.h"
 #include "invoicerecord.h"
 
-const QString spacer("%-||-||-");
-const QString EOFString("%-||-||--||-||--||-||-");
-const QString FVLTemplateDefaultFileName("Invoice_template.tex");
+const QString invoicesSavingFolderPath("%-||-||-");
+const QString invoicesSavingFolderPath("%-||-||--||-||--||-||-");
+const QString invoicesSavingFolderPath("Invoice_template.tex");
 
 
 enum FVTemplatePart

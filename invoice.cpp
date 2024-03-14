@@ -53,7 +53,7 @@ void invoice::setNewInvoiceNumber(const QString &nin){
             invoiceNumber = "1/" + m + "/"+y;
         }
         else{
-            QStringList mList= newNumber.split("/");
+            QStringList mList= newNumber.split(invoicesSavingFolderPath);
 
             //incorrect invoice number
             if(mList.size() < 3){
@@ -189,9 +189,13 @@ void invoice::createLatexInvoice(){
 
     QString tmpNum = invoiceNumber, tmpBuy =buyer.getName();
     removePolishDiacritics(tmpBuy);
-    invoiceFileName = "Rachunek_Nr_" + tmpNum.replace("/",".") + "_" + tmpBuy.replace(" ", "_");
+    invoiceFileName = "Rachunek_Nr_" + tmpNum.replace(invoicesSavingFolderPath,invoicesSavingFolderPath) + "_" + tmpBuy.replace(invoicesSavingFolderPath, invoicesSavingFolderPath);
+//    invoiceFileName = invoiceFileName.replace("\"","_");
+    removeCharactersNotAllowedInAFileName(invoiceFileName);
 
-    QFile mFile(invoicesPath  + invoiceFileName +".tex");
+    qDebug()<<"|"<<invoiceFileName +".tex"<<"|";
+
+    QFile mFile(invoicesFolderPath  + invoiceFileName +".tex");
     if(!mFile.open(QIODevice::ReadWrite)){
         qDebug()<< "Unable to create invoice file";
         exit(1);
@@ -237,11 +241,11 @@ void invoice::createPDFInvoice(){
         invoiceFileName + ".aux"
     };
 
-    tmp = "pdflatex -quiet -output-directory=" + invoicesPath +" " + invoicesPath + invoiceFileName+".tex";
+    tmp = "pdflatex -quiet -output-directory=" + invoicesFolderPath +" " + invoicesFolderPath + invoiceFileName+".tex";
     system(tmp.toStdString().c_str());
 
     for(const QString & a: filesToDelete){
-        tmp = "del " +invoicesPath + a;
+        tmp = "del " +invoicesFolderPath + a;
         system(tmp.toStdString().c_str());
     }
 }

@@ -13,16 +13,18 @@
 #include <QDir>
 #include <QSharedPointer>
 
+//if defined the application is in a develepoer mode and uses resource's paths correcr for Marcel's PC. In other case, it uses resources paths for a client's computer
 #define DEV_MODE
+//#define PUSH_DATABASE_TO_REPOSITORY
 
 #ifdef DEV_MODE
-const QString resourcesPath("D:\\SzkolkaRoslinOpatow\\Application_deployment\\External_resources\\");
-const QString invoicesPath("D:\\SzkolkaRoslinOpatow\\Aplikacja\\");
+const QString resourcesFolderPath("D:\\SzkolkaRoslinOpatow\\Application_deployment\\External_resources\\");
+const QString invoicesFolderPath("D:\\SzkolkaRoslinOpatow\\Aplikacja\\");
 #endif
 
 #ifndef DEV_MODE
-const QString resourcesPath("D:\\Aplikacja_szkolka\\External_resources\\");
-const QString invoicesPath("D:\\Szkolka_rachunki\\");
+const QString resourcesFolderPath("D:\\Aplikacja_szkolka\\External_resources\\");
+const QString invoicesFolderPath("D:\\Szkolka_rachunki\\");
 #endif
 
 //database files tags
@@ -32,11 +34,11 @@ const char CSVSplitTag = ';';
 const char ProductTag = '@';
 const QString SelleresTag("!Metody platnosci");
 
-const QString CustomersDatabasePath = resourcesPath + "Customers_database.csv";
-const QString SellersDatabasePath = resourcesPath + "Sellers_database.csv";
-const QString ProductsDatabasePath = resourcesPath + "Plants_database.csv";
-const QString PaymentMethodsPath = resourcesPath + "Payment_methods.csv";
-const QString InvoicesRegisterPath = resourcesPath + "Invoices_register.csv";
+const QString CustomersDatabasePath = resourcesFolderPath + "Customers_database.csv";
+const QString SellersDatabasePath = resourcesFolderPath + "Sellers_database.csv";
+const QString ProductsDatabasePath = resourcesFolderPath + "Plants_database.csv";
+const QString PaymentMethodsPath = resourcesFolderPath + "Payment_methods.csv";
+const QString InvoicesRegisterPath = resourcesFolderPath + "Invoices_register.csv";
 
 const QString outputDateFormat("d MMMM yyyy");
 const QString inputDateFormat("d.M.yyyy");
@@ -47,6 +49,15 @@ const QStringList invoicePaymentMethods = {"przelew 7 dni",
                                            "przelew 14 dni",
                                            "przelew 21 dni",
                                            "zapłacono gotówką"};
+
+// / : * ? " < >
+const QStringList charactersNotAllowedInAFileName = {"/", "\"", ":", "?", "<", ">"};
+
+static void removeCharactersNotAllowedInAFileName(QString & str){
+    for(const QString chr: charactersNotAllowedInAFileName){
+        str = str.replace(chr,"__");
+    }
+}
 
 static void removePolishDiacritics(QString & str){
     QStringList diacritics = {"ą",	"ę",	"ć",	"ł",	"ń",	"ó",	"ś",	"ż",	"ź",	"Ą",	"Ę",	"Ć",	"Ł",	"Ń",	"Ó",	"Ś",	"Ż",	"Ź"};
