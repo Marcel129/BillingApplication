@@ -23,7 +23,7 @@ SOURCES += \
 RESOURCES += qml.qrc
 
 TRANSLATIONS += \
-    testy_en_150.ts
+    billingApp_en_150.ts
 CONFIG += lrelease
 CONFIG += embed_translations
 
