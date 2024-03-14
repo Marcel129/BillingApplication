@@ -1,14 +1,9 @@
 #ifndef INVOICETEMPLATE_H
 #define INVOICETEMPLATE_H
 
-#include <QObject>
-#include <QDebug>
-#include <QFile>
-#include <QDate>
-
-#include <config.h>
-#include <database.h>
-#include <invoicerecord.h>
+#include "config.h"
+#include "database.h"
+#include "invoicerecord.h"
 
 const QString spacer("%-||-||-");
 const QString EOFString("%-||-||--||-||--||-||-");
