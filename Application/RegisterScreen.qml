@@ -260,6 +260,23 @@ Item {
                 }
                 color: "#5865F2"
             }
+            onCurrentIndexChanged: {
+                invoiceDetailsHeader.__text = "Szczegóły rachunku " + myDatabase.getInvoiceNumber_rev(lv.currentIndex)
+                invoiceDetailsHeaderSeller.__text = "Wystawił: " + myDatabase.getSellerName_rev(lv.currentIndex)
+
+                buyerName.text =  myDatabase.getCustomerName_rev(lv.currentIndex)
+                buyerAdress.text =  myDatabase.getCustomerAdress1_rev(lv.currentIndex)
+                buyerAdress2.text =  myDatabase.getCustomerAdress2_rev(lv.currentIndex)
+                buyerNIP.text = "NIP: " + myDatabase.getCustomerNIP_rev(lv.currentIndex)
+
+                reciperName.text = myDatabase.getReciperName_rev(lv.currentIndex)
+                reciperAdress.text = myDatabase.getReciperAdress1_rev(lv.currentIndex)
+                reciperAdress2.text = myDatabase.getReciperAdress2_rev(lv.currentIndex)
+
+                billingDate.text = myDatabase.getBillingDate_rev(lv.currentIndex)
+                paymentMethod.text = myDatabase.getPaymentMethod_rev(lv.currentIndex)
+                sumToPay.text = myDatabase.getTotalBillingPrice_rev(lv.currentIndex)+ " zł"
+            }
         }
 
         MButton{
@@ -313,7 +330,6 @@ Item {
             width: invoiceDetailsRootItem.width*0.5
             height: 30
             __fontBold: true
-            __text:"Szczegóły rachunku XXXXXX"
             __hTextAlignment: Text.AlignLeft
         }
 
@@ -326,7 +342,7 @@ Item {
             }
             height: 30
             __fontBold: true
-            __text:"Wystawił: YYYYYY"
+            __text:"Wystawił: "
             __hTextAlignment: Text.AlignRight
         }
 
@@ -466,7 +482,7 @@ Item {
                     topMargin: -2
                 }
                 height: 30
-                text: "Adres3"
+                text: "-"
                 __fontSize: 15
             }
         }

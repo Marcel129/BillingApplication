@@ -89,6 +89,18 @@ public slots:
     const QStringList getProductsTypesShorts() const;
 
     const QString getCustomerName(int index);
+    const QString getInvoiceNumber_rev(int revIndex);
+    const QString getSellerName_rev(int revIndex);
+    const QString getCustomerName_rev(int revIndex);
+    const QString getCustomerAdress1_rev(int revIndex);
+    const QString getCustomerAdress2_rev(int revIndex);
+    const QString getCustomerNIP_rev(int revIndex);
+    const QString getReciperName_rev(int revIndex);
+    const QString getReciperAdress1_rev(int revIndex);
+    const QString getReciperAdress2_rev(int revIndex);
+    const QString getBillingDate_rev(int revIndex);
+    const QString getPaymentMethod_rev(int revIndex);
+    const QString getTotalBillingPrice_rev(int revIndex);
 
 
 signals:

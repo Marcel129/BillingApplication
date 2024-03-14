@@ -233,6 +233,117 @@ const QString database::getCustomerName(int index)
     return "";
 }
 
+const QString database::getSellerName_rev(int revIndex)
+{
+    if(revIndex >=0 && revIndex < invoicesRegister.size()){
+        return (invoicesRegister.end()-revIndex-1)->getSeller().getName();
+    }
+    return "";
+}
+
+const QString database::getCustomerName_rev(int revIndex)
+{
+    if(revIndex >=0 && revIndex < invoicesRegister.size()){
+        return (invoicesRegister.end()-revIndex-1)->getBuyer().getName();
+    }
+    return "";
+}
+
+const QString database::getCustomerAdress1_rev(int revIndex)
+{
+    if(revIndex >=0 && revIndex < invoicesRegister.size()){
+        return (invoicesRegister.end()-revIndex-1)->getBuyer().getAdress();
+    }
+    return "";
+}
+
+const QString database::getCustomerAdress2_rev(int revIndex)
+{
+    if(revIndex >=0 && revIndex < invoicesRegister.size()){
+        return (invoicesRegister.end()-revIndex-1)->getBuyer().getPostal_code()+" "+
+                (invoicesRegister.end()-revIndex-1)->getBuyer().getTown();
+    }
+    return "";
+}
+
+const QString database::getCustomerNIP_rev(int revIndex)
+{
+    if(revIndex >=0 && revIndex < invoicesRegister.size()){
+        return (invoicesRegister.end()-revIndex-1)->getBuyer().getNIP();
+    }
+    return "";
+}
+
+
+const QString database::getReciperName_rev(int revIndex)
+{
+    if(revIndex >=0 && revIndex < invoicesRegister.size()){
+        QString tmp = (invoicesRegister.end()-revIndex-1)->getRecip().getName();
+        if(tmp!=""){
+              return (invoicesRegister.end()-revIndex-1)->getRecip().getName();
+        }
+    }
+    return "-";
+}
+
+const QString database::getReciperAdress1_rev(int revIndex)
+{
+    if(revIndex >=0 && revIndex < invoicesRegister.size()){
+        if((invoicesRegister.end()-revIndex-1)->getRecip().getName()!=""){
+              return (invoicesRegister.end()-revIndex-1)->getRecip().getAdress();
+        }
+    }
+    return "-";
+}
+
+const QString database::getReciperAdress2_rev(int revIndex)
+{
+    if(revIndex >=0 && revIndex < invoicesRegister.size()){
+        if((invoicesRegister.end()-revIndex-1)->getRecip().getName()!=""){
+              return (invoicesRegister.end()-revIndex-1)->getRecip().getPostal_code() +
+                      " " + (invoicesRegister.end()-revIndex-1)->getRecip().getTown();
+        }
+    }
+    return "-";
+}
+
+const QString database::getBillingDate_rev(int revIndex)
+{
+    if(revIndex >=0 && revIndex < invoicesRegister.size()){
+        return (invoicesRegister.end()-revIndex-1)->getBillingDate().toString(outputDateFormat);
+    }
+    return "";
+}
+
+const QString database::getPaymentMethod_rev(int revIndex)
+{
+    if(revIndex >=0 && revIndex < invoicesRegister.size()){
+        return (invoicesRegister.end()-revIndex-1)->getPaymentMethod();
+    }
+    return "";
+}
+
+const QString database::getTotalBillingPrice_rev(int revIndex)
+{
+    if(revIndex >=0 && revIndex < invoicesRegister.size()){
+        QVector<InvoiceRecord> tmp = (invoicesRegister.end()-revIndex-1)->getRecords();
+        double totalSum = 0;
+        for(const InvoiceRecord & x: tmp){
+            totalSum += x.getTotalValue();
+        }
+        return QString::number(totalSum);
+    }
+    return "";
+}
+
+const QString database::getInvoiceNumber_rev(int revIndex)
+{
+    if(revIndex >=0 && revIndex < invoicesRegister.size()){
+        return (invoicesRegister.end()-revIndex-1)->getInvoiceNumber();
+    }
+    return "";
+}
+
 void database::addProduct(const QString &type,
                           const QString &latinName,
                           const QString &polishName,
