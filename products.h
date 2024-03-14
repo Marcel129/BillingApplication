@@ -1,11 +1,7 @@
 #ifndef PRODUCTS_H
 #define PRODUCTS_H
 
-#include <QFile>
-#include <QString>
-#include <QDebug>
-
-#include <config.h>
+#include "config.h"
 
 const int productsElementsCount = 5;
 const QStringList productsTypes = {

@@ -1,12 +1,7 @@
 #ifndef INVOICERECORD_H
 #define INVOICERECORD_H
 
-#include <QObject>
-#include <QFile>
-#include <QDebug>
-#include <QVector>
-
-#include <config.h>
+#include "config.h"
 
 #define MIN_RABAT_VALUE 0
 #define MAX_RABAT_VALUE 100
