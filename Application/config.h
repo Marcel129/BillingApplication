@@ -14,7 +14,9 @@
 #include <QSharedPointer>
 
 //if defined the application is in a develepoer mode and uses resource's paths correcr for Marcel's PC. In other case, it uses resources paths for a client's computer
-#define DEV_MODE
+//#define DEV_MODE
+#define DEMO_MODE
+//#define PRODUCTION_MODE
 //#define PUSH_DATABASE_TO_REPOSITORY
 
 #ifdef DEV_MODE
@@ -22,9 +24,14 @@ const QString resourcesFolderPath("D:\\SzkolkaRoslinOpatow\\Application_deployme
 const QString invoicesFolderPath("D:\\SzkolkaRoslinOpatow\\Aplikacja\\");
 #endif
 
-#ifndef DEV_MODE
+#ifdef PRODUCTION_MODE
 const QString resourcesFolderPath("D:\\Aplikacja_szkolka\\External_resources\\");
 const QString invoicesFolderPath("D:\\Szkolka_rachunki\\");
+#endif
+
+#ifdef DEMO_MODE
+const QString resourcesFolderPath("D:\\SzkolkaRoslinOpatow\\Aplikacja\\External_resources_demo\\");
+const QString invoicesFolderPath("D:\\SzkolkaRoslinOpatow\\Aplikacja\\");
 #endif
 
 //database files tags
