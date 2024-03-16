@@ -4,7 +4,7 @@ Do tworzenia plików PDF wykorzystano skład tekstu LATEX. Program przechowuje i
 
 Aplikacja powstała z myślą o użytkowaniu przez osoby mniej techniczne (np. osoby starsze), ale prowadzące własną działalność gospodarczą i potrzebujace wystawiać rachunki, stąd ograniczona ilość funcji i niezwykle prosty interfejs użytkownika. 
 
-Program wyposażono w możliwość zdalnej aktualizacji w razie wprowadzenia zmian/usuwania błędów.
+Program wyposażono w możliwość pobierania aktualizacji w razie wprowadzenia zmian/usuwania błędów.
 
 ### Przykład wystawionego rachunku
 ![image](https://github.com/Marcel129/BillingApplication/assets/62217145/f43144b0-dbfa-4d88-bc5d-403729dff36f)
@@ -27,7 +27,7 @@ Program przechowuje również bazę danych sprzedawanych towarów. Zakładka ta 
 
 
 ### Karta "Rejestr"
-W zakłądce tej dostępny jest podgląd wystawionych już rachunków oraz w razie potrzeby ich odtworzenie lub usunięcie.
+W zakładce tej dostępny jest podgląd wystawionych już rachunków oraz w razie potrzeby ich odtworzenie lub usunięcie.
 ![image](https://github.com/Marcel129/BillingApplication/assets/62217145/9b530dbb-e655-40ac-b6f0-cf70f9d9d830)
 
 
