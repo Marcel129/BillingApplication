@@ -1,14 +1,49 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
+import QtQuick.Dialogs 1.3
 
 Item {
     anchors.fill: parent
     anchors.margins: 15
+    readonly property int __spacing: 25
+    readonly property int __generalMargins: 15
 
-    Text{
-        text: "Tu będą opcje"
-        anchors.centerIn: parent
-        font.pixelSize: 20
+    MButton{
+        id: checkUpdate
+        text: "Aktualizuj"
+        width: 110
+        anchors{
+            left: parent.left
+            top: parent.top
+            margins: __generalMargins
+            topMargin: 10
+        }
+        onClicked: {
+            myDatabase.updateAvailable() ? msBox_actualizationAvailable.open() : msBox_noActualization.open()
+        }
+    }
+
+    MessageDialog {
+        id: msBox_noActualization
+        title: "Aktualizacja"
+        text: "Program jest zaktualizowany do najnowszej wersji."
+        standardButtons: StandardButton.Ok
+        onAccepted: {
+            close()
+        }
+    }
+
+    MessageDialog {
+        id: msBox_actualizationAvailable
+        title: "Aktualizacja"
+        text: "Dostępna jest aktualizacja programu. Czy chcesz ją teraz pobrać?"
+        standardButtons: StandardButton.Yes | StandardButton.No
+        onYes: {
+            close()
+        }
+        onNo:{
+            close()
+        }
     }
 
 //    LineEdit{

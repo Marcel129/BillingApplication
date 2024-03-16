@@ -336,6 +336,16 @@ const QString database::getTotalBillingPrice_rev(int revIndex)
     return "";
 }
 
+bool database::updateAvailable() const{
+
+    QFile mfile(updateAvailableFilePath);
+    if(!mfile.open(QIODevice::ReadOnly)){
+        mfile.close();
+        return false;
+    }
+    return true;
+}
+
 const QString database::getInvoiceNumber_rev(int revIndex)
 {
     if(revIndex >=0 && revIndex < invoicesRegister.size()){

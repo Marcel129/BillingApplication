@@ -57,6 +57,8 @@ const QStringList invoicePaymentMethods = {"przelew 7 dni",
                                            "przelew 21 dni",
                                            "zapłacono gotówką"};
 
+const QString updateAvailableFilePath = resourcesFolderPath + "updateAvailable";
+
 // / : * ? " < >
 const QStringList charactersNotAllowedInAFileName = {"/", "\"", ":", "?", "<", ">"};
 

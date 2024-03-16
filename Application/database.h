@@ -7,7 +7,6 @@
 #include "products.h"
 #include "invoicebase.h"
 
-
 class database : public QObject
 {
     Q_OBJECT
@@ -101,6 +100,8 @@ public slots:
     const QString getBillingDate_rev(int revIndex);
     const QString getPaymentMethod_rev(int revIndex);
     const QString getTotalBillingPrice_rev(int revIndex);
+
+    bool updateAvailable()const;
 
 
 signals:
