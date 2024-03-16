@@ -19,7 +19,7 @@ public:
         LpRole = Qt::UserRole,
         invoiceNumber,
         buyer,
-        peymantMethod,
+        peymentMethod,
         date
     };
 

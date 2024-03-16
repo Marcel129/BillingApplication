@@ -125,6 +125,7 @@ signals:
     void postAddReciper();
 
     void refreshRecipersTableViewSignal(int);
+    void refreshInvoiceRecordsInRegisterTableViewSignal(int);
 
 };
 

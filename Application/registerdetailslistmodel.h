@@ -1,25 +1,23 @@
-#ifndef RECIPERRECLISTMODEL_H
-#define RECIPERRECLISTMODEL_H
+#ifndef REGISTERDETAILSLISTMODEL_H
+#define REGISTERDETAILSLISTMODEL_H
 
 #include <QAbstractListModel>
 #include "database.h"
-
 class database;
 
-class ReciperRecListModel : public QAbstractListModel
+class registerDetailsListModel: public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(database *mDatabase READ getmDatabase WRITE setmDatabase)
-
+    Q_PROPERTY(database *mDatabase READ getmDatabase WRITE setmDatabase);
 public:
-    explicit ReciperRecListModel(QObject *parent = nullptr);
+    explicit registerDetailsListModel(QObject *parent = nullptr);
 
     enum{
         LpRole = Qt::UserRole,
-        reciperName,
-        address,
-        postalCode,
-        town
+        plantPolishName,
+        plantsAmmount,
+        plantsPrice,
+        plantsRabat
     };
 
     // Basic functionality:
@@ -34,7 +32,7 @@ public:
 
 private:
     database * mDatabase;
-    int actCustomerIndex;
+    int currInvoiceIndex;
 };
 
-#endif // RECIPERRECLISTMODEL_H
+#endif // REGISTERDETAILSLISTMODEL_H

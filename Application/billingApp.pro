@@ -18,6 +18,7 @@ SOURCES += \
         productreclistmodel.cpp \
         products.cpp \
         reciperreclistmodel.cpp \
+        registerdetailslistmodel.cpp \
         registerreclistmodel.cpp
 
 RESOURCES += qml.qrc
@@ -55,4 +56,5 @@ HEADERS += \
     productreclistmodel.h \
     products.h \
     reciperreclistmodel.h \
+    registerdetailslistmodel.h \
     registerreclistmodel.h

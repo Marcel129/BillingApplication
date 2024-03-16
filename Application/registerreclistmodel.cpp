@@ -26,7 +26,7 @@ QVariant RegisterRecListModel::data(const QModelIndex &index, int role) const
     case LpRole: return QVariant(QString::number(index.row()));
     case invoiceNumber: return QVariant(currIvoice.getInvoiceNumber());
     case buyer: return QVariant(currIvoice.getBuyer().getName());
-    case peymantMethod: return QVariant(currIvoice.getPaymentMethod());
+    case peymentMethod: return QVariant(currIvoice.getPaymentMethod());
     case date: return QVariant(currIvoice.getSaleDate().toString("dd.MM.yyyy"));
     }
 
@@ -40,7 +40,7 @@ QHash<int, QByteArray> RegisterRecListModel::roleNames() const
     names[LpRole] = "lp";
     names[invoiceNumber] = "invoiceNumber";
     names[buyer] = "buyer";
-    names[peymantMethod] = "peymantMethod";
+    names[peymentMethod] = "peymantMethod";
     names[date] = "date";
     return names;
 }

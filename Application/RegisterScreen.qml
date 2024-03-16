@@ -1,8 +1,9 @@
-import QtQuick 2.6
-import QtQuick.Controls 2.0
+import QtQuick 2.0
+import QtQuick.Controls 2.2
 import QtQuick.Dialogs 1.3
 
 import InvoicesRegister 1.0
+import InvoiceRecordsList 1.0
 
 Item {
     id:rootItem
@@ -276,6 +277,8 @@ Item {
                 billingDate.text = myDatabase.getBillingDate_rev(lv.currentIndex)
                 paymentMethod.text = myDatabase.getPaymentMethod_rev(lv.currentIndex)
                 sumToPay.text = myDatabase.getTotalBillingPrice_rev(lv.currentIndex)+ " zł"
+
+                myDatabase.refreshInvoiceRecordsInRegisterTableViewSignal(lv.currentIndex)
             }
         }
 
@@ -351,7 +354,6 @@ Item {
             anchors{
                 top: invoiceDetailsHeader.bottom
                 left: invoiceDetailsHeader.left
-                //                bottom: invoiceDetailsRootItem.bottom
                 right: invoiceDetailsHeader.right
             }
             height:150-3*2-2
@@ -632,7 +634,7 @@ Item {
                     }
                     TextField{
                         id:plantNameElem
-                        text: model.buyerName
+                        text: model.plantPolishName
                         font.pixelSize: fontSize
                         font.bold: elemRootRec.__fontBold
                         color: __fontColor
@@ -647,7 +649,7 @@ Item {
                     }
                     TextField{
                         id:plantQuatityElem
-                        text: model.adress
+                        text: model.plantsAmmount
                         font.pixelSize: fontSize
                         font.bold: elemRootRec.__fontBold
                         color: __fontColor
@@ -663,7 +665,7 @@ Item {
                     TextField{
                         id:plantPriceElem
                         visible: true
-                        text: model.town
+                        text: model.plantsPrice
                         height: elemRootRec.height
                         font.pixelSize: fontSize
                         font.bold: elemRootRec.__fontBold
@@ -678,7 +680,7 @@ Item {
                     }
                     TextField{
                         id:rabatElem
-                        text: model.postalCode
+                        text: model.plantsRabat
                         font.pixelSize: fontSize
                         font.bold: elemRootRec.__fontBold
                         color: __fontColor
@@ -818,9 +820,9 @@ Item {
                     topMargin: 0
                 }
 
-                //                model: BuyersRecListModel{
-                //                    mDatabase: myDatabase
-                //                }
+                model: RegisterDetailsListModel{
+                    mDatabase: myDatabase
+                }
 
                 delegate:lvInvoiceElem
                 focus: true

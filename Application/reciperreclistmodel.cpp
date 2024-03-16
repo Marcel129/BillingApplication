@@ -3,7 +3,7 @@
 ReciperRecListModel::ReciperRecListModel(QObject *parent)
     : QAbstractListModel(parent), mDatabase(nullptr)
 {
-    actCustomerIndex=0;
+    actCustomerIndex = 0;
 }
 
 int ReciperRecListModel::rowCount(const QModelIndex &parent) const
@@ -75,7 +75,6 @@ void ReciperRecListModel::setmDatabase(database *newDatabse)
         });
         connect(mDatabase, &database::refreshRecipersTableViewSignal, this, [=](int index){
             actCustomerIndex = index;
-            qDebug()<<"Actuall index: "<<index;
              beginResetModel();
              endResetModel();
         });

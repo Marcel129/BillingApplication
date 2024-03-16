@@ -2,6 +2,7 @@
 
 const QVector<InvoiceRecord> &invoiceBase::getRecords() const
 {
+//    qDebug()<<"Zwracam "<<records.size()<<" rekordów";
     return records;
 }
 

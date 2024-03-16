@@ -13,6 +13,7 @@
 #include "registerreclistmodel.h"
 #include "buyersreclistmodel.h"
 #include "reciperreclistmodel.h"
+#include "registerdetailslistmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -26,6 +27,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<RegisterRecListModel>("InvoicesRegister", 1, 0, "RegisterRecListModel");
     qmlRegisterType<BuyersRecListModel>("BuyersList", 1, 0, "BuyersRecListModel");
     qmlRegisterType<ReciperRecListModel>("RecipersList", 1, 0, "ReciperRecListModel");
+    qmlRegisterType<registerDetailsListModel>("InvoiceRecordsList", 1, 0, "RegisterDetailsListModel");
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
