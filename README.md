@@ -7,22 +7,27 @@ Aplikacja powstała z myślą o użytkowaniu przez osoby mniej techniczne (np. o
 Program wyposażono w możliwość zdalnej aktualizacji w razie wprowadzenia zmian/usuwania błędów.
 
 ### Przykład wystawionego rachunku
-![image](https://github.com/Marcel129/SmallBussinesApplication/assets/62217145/b2c1f2e8-6691-4a09-8ea5-0b075c27e499)
+![image](https://github.com/Marcel129/BillingApplication/assets/62217145/f43144b0-dbfa-4d88-bc5d-403729dff36f)
+
 
 # Karty aplikacji
 ### Karta "Rachunek"
-Podstawowa karta służąca do wprowadzenia danych wystawcy i odbiorcy oraz listy zakupionych produktów.
-![image](https://github.com/Marcel129/SmallBussinesApplication/assets/62217145/a00cb22d-0c7c-4344-82b9-f7e828caa57d)
+Podstawowa karta służąca do stworzenia rachunku, wprowadzenia danych wystawcy i odbiorcy oraz listy zakupionych produktów.
+![image](https://github.com/Marcel129/BillingApplication/assets/62217145/7c59bfcb-0a59-452b-8d5b-992ef3716b99)
+
 
 ### Karta "Kontrahenci"
 Aplikacja przechowuje bazę danych kontrahentów. Zakładka ta służy do zarządzania ich danymi (dodawanie, usuwanie, edycja). Istnieje możliwość dodania kilku odbiorców dla jednego nabywcy w np. przypadku, gdy nabywca jest organ władzy samorządowej, a odbiorcą podległa mu instytucja.
-![image](https://github.com/Marcel129/SmallBussinesApplication/assets/62217145/10e61e20-bf2e-48df-8348-758078046b6e)
+![image](https://github.com/Marcel129/BillingApplication/assets/62217145/729b76a8-07e7-42f3-a719-a5cd713a9b78)
+
 
 ### Karta "Produkty"
 Program przechowuje również bazę danych sprzedawanych towarów. Zakładka ta służy do ich edycji.
-![image](https://github.com/Marcel129/SmallBussinesApplication/assets/62217145/9e6bccb8-9734-4513-a772-1d2954156a9a)
+![image](https://github.com/Marcel129/BillingApplication/assets/62217145/034400fd-65e9-4983-8451-d224dad4bac4)
+
 
 ### Karta "Rejestr"
 W zakłądce tej dostępny jest podgląd wystawionych już rachunków oraz w razie potrzeby ich odtworzenie lub usunięcie.
-![image](https://github.com/Marcel129/SmallBussinesApplication/assets/62217145/63b44666-42ee-4a0f-8103-a9eb3c5fffa1)
+![image](https://github.com/Marcel129/BillingApplication/assets/62217145/9b530dbb-e655-40ac-b6f0-cf70f9d9d830)
+
 
