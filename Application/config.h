@@ -12,6 +12,7 @@
 #include <QDate>
 #include <QDir>
 #include <QSharedPointer>
+#include <windows.h>
 
 //if defined the application is in a develepoer mode and uses resource's paths correcr for Marcel's PC. In other case, it uses resources paths for a client's computer
 //#define DEV_MODE

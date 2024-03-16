@@ -19,26 +19,17 @@ Item {
             topMargin: 10
         }
         onClicked: {
-            myDatabase.updateAvailable() ? msBox_actualizationAvailable.open() : msBox_noActualization.open()
-        }
-    }
-
-    MessageDialog {
-        id: msBox_noActualization
-        title: "Aktualizacja"
-        text: "Program jest zaktualizowany do najnowszej wersji."
-        standardButtons: StandardButton.Ok
-        onAccepted: {
-            close()
+            msBox_actualizationAvailable.open()
         }
     }
 
     MessageDialog {
         id: msBox_actualizationAvailable
         title: "Aktualizacja"
-        text: "Dostępna jest aktualizacja programu. Czy chcesz ją teraz pobrać?"
+        text: "Program zostanie zamknięty, niezapisane zmiany zostaną utracone. Czy chcesz kontynuować?"
         standardButtons: StandardButton.Yes | StandardButton.No
         onYes: {
+             myDatabase.updateAvailable()
             close()
         }
         onNo:{

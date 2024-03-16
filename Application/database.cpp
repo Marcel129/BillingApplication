@@ -338,12 +338,9 @@ const QString database::getTotalBillingPrice_rev(int revIndex)
 
 bool database::updateAvailable() const{
 
-    QFile mfile(updateAvailableFilePath);
-    if(!mfile.open(QIODevice::ReadOnly)){
-        mfile.close();
-        return false;
-    }
-    return true;
+    system("del %temp%\\Updater.bat");
+    system("copy Updater.bat %temp%");
+    system("%temp%\\Updater.bat");
 }
 
 const QString database::getInvoiceNumber_rev(int revIndex)
