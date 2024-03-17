@@ -15,8 +15,8 @@
 #include <windows.h>
 
 //if defined the application is in a develepoer mode and uses resource's paths correcr for Marcel's PC. In other case, it uses resources paths for a client's computer
-//#define DEV_MODE
-#define DEMO_MODE
+#define DEV_MODE
+//#define DEMO_MODE
 //#define PRODUCTION_MODE
 //#define PUSH_DATABASE_TO_REPOSITORY
 
