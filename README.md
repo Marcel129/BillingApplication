@@ -1,33 +1,30 @@
-# Opis
-Mała, prosta aplikacja służąca do wystawiania rachunków na zakupione towary. 
-Do tworzenia plików PDF wykorzystano skład tekstu LATEX. Program przechowuje informacje odnośnie sprzedawanych towarów, klientów oraz historii wystawionych rachunków. Szablon dokumentu przechowywany jest jako osobny plik - w celu jego zmiany nie ma potrzeby ponownej kompilacji programu. Do stworzenia interfejsu graficznego wykorzystano bibliotekę Qt. 
+# Billing application
+### About
+A small, simple application designed for issuing invoices for purchased goods. The application uses LaTeX for generating PDF files. It stores information about the goods being sold, clients, and the history of issued invoices. The document template is stored as a separate file and is loaded into the program’s memory at startup, so there is no need to recompile the program if the template is changed. The Qt library was used to create the graphical interface.
 
-Aplikacja powstała z myślą o użytkowaniu przez osoby mniej techniczne (np. osoby starsze), ale prowadzące własną działalność gospodarczą i potrzebujace wystawiać rachunki, stąd ograniczona ilość funcji i niezwykle prosty interfejs użytkownika. 
+The application features a simple and minimalist user interface. The program includes the ability to download updates in case of changes or bug fixes.
 
-Program wyposażono w możliwość pobierania aktualizacji w razie wprowadzenia zmian/usuwania błędów.
-
-### Przykład wystawionego rachunku
+### Invoice sample
 ![image](https://github.com/Marcel129/BillingApplication/assets/62217145/f43144b0-dbfa-4d88-bc5d-403729dff36f)
 
-
-# Karty aplikacji
-### Karta "Rachunek"
-Podstawowa karta służąca do stworzenia rachunku, wprowadzenia danych wystawcy i odbiorcy oraz listy zakupionych produktów.
+# Tabs
+### Tab "Rachunek" (Invoice)
+Basic card used to enter invoice data. Allows you to set the recipient, seller and list of sold goods.
 ![image](https://github.com/Marcel129/BillingApplication/assets/62217145/7c59bfcb-0a59-452b-8d5b-992ef3716b99)
 
 
-### Karta "Kontrahenci"
-Aplikacja przechowuje bazę danych kontrahentów. Zakładka ta służy do zarządzania ich danymi (dodawanie, usuwanie, edycja). Istnieje możliwość dodania kilku odbiorców dla jednego nabywcy w np. przypadku, gdy nabywca jest organ władzy samorządowej, a odbiorcą podległa mu instytucja.
+### Tab "Kontrahenci" (Customers)
+The application stores a database of clients. This tab is used for managing their data (adding, deleting, editing). It is possible to add multiple recipients for a single buyer, for example, in cases where the buyer is a local government authority, and the recipient is a subordinate institution.
 ![image](https://github.com/Marcel129/BillingApplication/assets/62217145/729b76a8-07e7-42f3-a719-a5cd713a9b78)
 
 
-### Karta "Produkty"
-Program przechowuje również bazę danych sprzedawanych towarów. Zakładka ta służy do ich edycji.
+### Tab "Produkty" (Products)
+The program also stores a database of goods for sale. This tab is used for editing them.
 ![image](https://github.com/Marcel129/BillingApplication/assets/62217145/034400fd-65e9-4983-8451-d224dad4bac4)
 
 
-### Karta "Rejestr"
-W zakładce tej dostępny jest podgląd wystawionych już rachunków oraz w razie potrzeby ich odtworzenie lub usunięcie.
+### Tab "Rejestr" (Register)
+This tab provides a preview of already issued invoices, with the option to retrieve or delete them if needed.
 ![image](https://github.com/Marcel129/BillingApplication/assets/62217145/9b530dbb-e655-40ac-b6f0-cf70f9d9d830)
 
 
